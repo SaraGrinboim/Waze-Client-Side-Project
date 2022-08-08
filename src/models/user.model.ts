@@ -1,4 +1,8 @@
 export type User = {
-    userName: String,
-    password: String
+    role:Etype      
+}
+
+export enum Etype{
+    manager,
+    customer
 }
