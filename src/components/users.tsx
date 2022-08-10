@@ -9,20 +9,24 @@ const Users: React.FC = () => {
 
   useEffect(() => {
     get()?.then((users) =>
-      setUsers(users.data))
+      setUsers(users))
     console.log(users);
-  }, [users])
+  }, [])
 
   return (
     <div>
       <ul>
-        {users.map((u:User) => (
-          <li key={u.role}>
+        {users.map((u: User) => (
+          <li key:String={u._id}>
             {" "}
-            <Link to={`/user/${u.role}`}> {u.role} </Link>{" "}
+            <Link to={`/user/${u._id}`}> {u.firstName + '' + u.lastName}</Link>{" "}<br />
+            <Link to={`/add`}> to add system</Link>{" "}
+            <Link to={`/addUser`}> to add user</Link>{" "}
+
           </li>
         ))}
-      </ul>     </div>
+      </ul>
+    </div>
   );
 }
 //משום מה לא עובד לי בלי הדיפולט

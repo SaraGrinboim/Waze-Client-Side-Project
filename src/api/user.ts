@@ -3,7 +3,7 @@ import { User } from '../models/user.model';
 
 export const get = async () => {
     try {
-        const users = await axios.get(`http://localhost:3000/user`);
+        const users = await axios.get(`http://localhost:3333/user`);
         return users.data;
     }
     catch (error) {
@@ -14,7 +14,7 @@ export const get = async () => {
 
 export const getById = async (id: string) => {
     try {
-        const user = await axios.get(`http://localhost:3000/user/${id}`);
+        const user = await axios.get(`http://localhost:3333/user/${id}`);
         return user.data;
     }
     catch (error) {
@@ -24,7 +24,7 @@ export const getById = async (id: string) => {
 
 export const update = (id: string, user: User) => {
     try {
-        return axios.put(`http://localhost:3000/user/${id}`, user);
+        return axios.put(`http://localhost:3333/user/${id}`, user);
 
     }
     catch (error) {
@@ -34,7 +34,7 @@ export const update = (id: string, user: User) => {
 
 export const add = (user: User) => {
     try {
-        return axios.post(`http://localhost:3000/user`, user);
+        return axios.post(`http://localhost:3333/user`, user);
     }
     catch (error) {
         console.log('error in add user', error);
@@ -43,7 +43,7 @@ export const add = (user: User) => {
 
 export const deleteById = (id: string) => {
     try {
-        return axios.delete(`http://localhost:3000/user/${id}`);
+        return axios.delete(`http://localhost:3333/user/${id}`);
 
     }
     catch (error) {
