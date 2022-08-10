@@ -23,6 +23,18 @@ export const getSystemById = async (id: string) => {
 
 }
 
+
+export const getSystemsByUrlName = async (urlName: string) => {
+
+    try {
+        const system = await axios.get(`http://localhost:3333/system/getSystemByUrlName/${urlName}`)
+        return system.data;
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
 export const createSystem = async (system: System) => {
 
     try {

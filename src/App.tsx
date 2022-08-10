@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import Users from './components/users';
 import CreateSystem from "./components/createSystem";
 import CreateUser from './components/createUser';
+import User from './components/user';
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
           <Route path="" element={<h1>Hello ✋</h1>} />
           <Route path="/add" element={<CreateSystem />} />
           <Route path="/addUser" element={<CreateUser />} />
+          <Route path=":userId" element={<User />} />
           <Route path="/user" element={<Users />}>
             {/* <Route path="/add" element={<CreateUser />} /> */}
-            {/* <Route path=":getid" element={<User />} />
-            <Route path=":id" element={< UpdateUser />} /> */}
+             {/* <Route path=":userId" element={<User />} /> */}
+            {/* <Route path=":id" element={< UpdateUser />} /> */}
           </Route>
           {/* <Route path="/system" element={<Users />}>
           <Route path="/:id" element={<CreateSystem/>}/>*

@@ -14,10 +14,13 @@ export default function CreateSystem() {
   const [phone, setPhone] = useState('');
   const [ownerId, setOwnerId] = useState('');
   const [urlName, setUrlName] = useState('');
+  const [_id, setId] = useState('');
+
 
 
   const addSystem = async () => {
     const sys: System = {
+      _id,
       topic,
       objectName,
       ownerId,

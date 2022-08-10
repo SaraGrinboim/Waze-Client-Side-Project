@@ -1,6 +1,5 @@
-import { User } from "./user.model"
-
 export type System = {
+    _id:String,
     topic: string,
     objectName: string,
     ownerId: String;

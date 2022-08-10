@@ -1,4 +1,4 @@
-export type User = {
+export type user = {
     _id:String,
     role:Erole,
     firstName:String,

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 import { add } from '../api/user';
-import { Erole, User } from '../models/user.model';
+import { Erole, user } from '../models/user.model';
 
 
 export default function CreateSystem() {
@@ -14,7 +14,8 @@ export default function CreateSystem() {
     const [phone, setPhone] = useState('');
 
     const addUser = async () => {
-        const user: User = {
+        const user: user = {
+            _id: "",
             role,
             firstName,
             lastName,
@@ -46,7 +47,7 @@ export default function CreateSystem() {
                     type="string"
                     className="form-control"
                     placeholder="Enter topic"
-                    onChange={(e) => setRole(SetStateAction<Erole>(e.target.value))}
+                    // onChange={(e) => setRole<Erole>(e.target.value)}
                 />
             </div>
             <div className="mb-3">
@@ -94,6 +95,3 @@ export default function CreateSystem() {
     );
 }
 
-function SetStateAction<T>(value: string): React.SetStateAction<Erole> {
-    throw new Error('Function not implemented.');
-}

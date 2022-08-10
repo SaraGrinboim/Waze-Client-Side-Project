@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User } from '../models/user.model';
+import { user } from '../models/user.model';
 
 export const get = async () => {
     try {
@@ -22,7 +22,7 @@ export const getById = async (id: string) => {
     }
 }
 
-export const update = (id: string, user: User) => {
+export const update = (id: string, user: user) => {
     try {
         return axios.put(`http://localhost:3333/user/${id}`, user);
 
@@ -32,7 +32,7 @@ export const update = (id: string, user: User) => {
     }
 }
 
-export const add = (user: User) => {
+export const add = (user: user) => {
     try {
         return axios.post(`http://localhost:3333/user`, user);
     }
