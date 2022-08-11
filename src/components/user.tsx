@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 // import { useRecoilState, useSetRecoilState } from 'recoil';
-import { get, update, getById } from '../api/user';
+import { getById, deleteById } from '../api/user';
 import { Erole, user } from '../models/user.model';
 
 const User = () => {
@@ -16,12 +17,10 @@ const User = () => {
     };
     const [user, setUser] = useState(u);
 
-    let id:string;
-    id = String(userId);
     const navigate = useNavigate();
     // const [name, setName] = useState(user?.name);
     useEffect(() =>{
-       getById(id).then((u) =>{
+       getById(String(userId)).then((u) =>{
         setUser(u);
        })
         if (!user) {
@@ -29,6 +28,12 @@ const User = () => {
             navigate('/user');  // דוגמא לניווט ע"י קוד
         }
     }, []);
+
+    const Delete = async () =>{
+      let result =  await deleteById(String(user._id));
+        console.log(result);
+        navigate('/user');
+    };
 
 
     return user?
@@ -67,7 +72,7 @@ const User = () => {
         </div>
         <div className="d-grid">
         <Link to={`/update/${user._id}`}>to update</Link>
-            <button>to delete</button>
+        <Button variant="text" onClick={Delete}>to delete</Button>{" "}<br />
         </div>
     </form>:null;
 

@@ -8,7 +8,7 @@ import CreateSystem from "./components/createSystem";
 import CreateUser from './components/createUser';
 import User from './components/user';
 import Systems from './components/system';
-
+import ShowSystem from './components/showSystem';
 
 function App() {
   return (
@@ -19,7 +19,9 @@ function App() {
           <Route path="" element={<h1>Hello ✋</h1>} />
           <Route path="/add" element={<CreateSystem />} />
           <Route path="/addUser" element={<CreateUser />} />
-          <Route path=":userId" element={<User />} />
+          <Route path="/system" element={<Systems />} />
+          <Route path="/system/:urlName" element={<ShowSystem />} />
+          <Route path="/user/:userId" element={<User />} />
           <Route path="/user" element={<Users />}>
             {/* <Route path="/systems" element={<Systems />} /> */}
 

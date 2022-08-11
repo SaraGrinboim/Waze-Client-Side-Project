@@ -1,22 +1,23 @@
+import { Alert, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import React, { useState } from 'react';
 // import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 import { add } from '../api/user';
 import { Erole, user } from '../models/user.model';
 
-
 export default function CreateSystem() {
 
-    const [role, setRole] = useState(Erole.customer);
+    const [role, setRole] = useState('');
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
 
     const addUser = async () => {
+        <Alert severity="success">This is a success!</Alert>
         const user: user = {
-            _id: "",
-            role,
+            // _id:'',
+            role: Erole.customer,
             firstName,
             lastName,
             email,
@@ -27,8 +28,12 @@ export default function CreateSystem() {
         console.log(result);
     }
 
+    const handleChange = (event: SelectChangeEvent) => {
+        setRole(event.target.value);
+    };
+
     return (
-        <form className='auth-inner'  onSubmit={addUser}
+        <form className='auth-inner' onSubmit={addUser}
         //   component="form"
         //   sx={{
         //     '& > :not(style)': { m: 1, width: '25ch' },
@@ -42,54 +47,71 @@ export default function CreateSystem() {
             {/* <TextField id="filled-basic" label="Filled" variant="filled" />
       <TextField id="standard-basic" label="Standard" variant="standard" /> */}
             <div className="mb-3">
-                <label>role</label>
+                {/* <label>role</label>
                 <input
                     type="string"
                     className="form-control"
-                    placeholder="Enter topic"
-                    // onChange={(e) => setRole<Erole>(e.target.value)}
-                />
+                    placeholder="Enter topic" 
+                onChange={(e) => setRole<Erole>(e.target.value)}
+               /> */}
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <Select
+                        value={role}
+                        onChange={handleChange}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                        <MenuItem value={'customer'}>customer</MenuItem>
+                        <MenuItem value={'manager'}>manager</MenuItem>
+                        <MenuItem value={'admin'}>admin</MenuItem>
+                    </Select>
+                </FormControl>
             </div>
             <div className="mb-3">
-                <label>first name</label>
+                {/* <label>first name</label>
                 <input
                     type="string"
                     className="form-control"
                     placeholder="Enter objectName"
                     onChange={(e) => setfirstName(e.target.value)}
-                />
+                /> */}
+                <TextField id="outlined-basic" label="first name" variant="outlined" onChange={(e) => setfirstName(e.target.value)} />
             </div>
             <div className="mb-3">
-                <label>last name</label>
+                {/* <label>last name</label>
                 <input
                     type="string"
                     className="form-control"
                     placeholder="Enter topic"
                     onChange={(e) => setlastName(e.target.value)}
-                />
+                /> */}
+                <TextField id="outlined-basic" label="last name" variant="outlined" onChange={(e) => setlastName(e.target.value)} />
             </div>
             <div className="mb-3">
-                <label>email</label>
+                {/* <label>email</label>
                 <input
                     type="string"
                     className="form-control"
                     placeholder="Enter email"
                     onChange={(e) => setEmail(e.target.value)}
-                />
+                /> */}
+                <TextField id="outlined-basic" label="emil address" variant="outlined" onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="mb-3">
-                <label>phone</label>
+                {/* <label>phone</label>
                 <input
                     type="string"
                     className="form-control"
                     placeholder="Enter phone"
                     onChange={(e) => setPhone(e.target.value)}
-                />
+                /> */}
+                <TextField id="outlined-basic" label="phone number" variant="outlined" onChange={(e) => setPhone(e.target.value)} />
             </div>
             <div className="d-grid">
-                <button type="submit" className="btn btn-primary">
+                {/* <button type="submit" className="btn btn-primary">
                     Submit
-                </button>
+                </button> */}
+                <Button variant="outlined" type="submit">Submit</Button>
             </div>
         </form>
     );
