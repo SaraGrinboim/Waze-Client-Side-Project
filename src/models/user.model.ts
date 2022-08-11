@@ -1,8 +1,14 @@
-export type User = {
-    role:Etype      
+export type user = {
+    _id:String,
+    role:Erole,
+    firstName:String,
+    lastName:String,
+    email:String,
+    phone:String
 }
 
-export enum Etype{
+export enum Erole{
     manager,
-    customer
+    customer,
+    admin
 }

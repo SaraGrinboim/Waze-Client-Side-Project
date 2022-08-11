@@ -2,9 +2,18 @@ import React, { useContext, useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from './components/login';
+<<<<<<< HEAD
 import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { AuthContext } from "./context/AuthContext";
 
+=======
+import { Route, Routes } from 'react-router-dom';
+import Users from './components/users';
+import CreateSystem from "./components/createSystem";
+import CreateUser from './components/createUser';
+import User from './components/user';
+import Systems from './components/system';
+>>>>>>> 222931565b090f2fe12eed29fa85cfa107381843
 
 
 function App() {
@@ -13,8 +22,34 @@ function App() {
 
 
   return (
+<<<<<<< HEAD
     <Login/>
   )
+=======
+    <div className="App">
+      {/* <Login /> */}
+      <div>
+        <Routes>
+          <Route path="" element={<h1>Hello ✋</h1>} />
+          <Route path="/add" element={<CreateSystem />} />
+          <Route path="/addUser" element={<CreateUser />} />
+          <Route path=":userId" element={<User />} />
+          <Route path="/user" element={<Users />}>
+            {/* <Route path="/systems" element={<Systems />} /> */}
+
+            {/* <Route path="/add" element={<CreateUser />} /> */}
+            {/* <Route path=":userId" element={<User />} /> */}
+            {/* <Route path=":id" element={< UpdateUser />} /> */}
+          </Route>
+          {/* <Route path="/system" element={<Users />}>
+          <Route path="/:id" element={<CreateSystem/>}/>*
+          </Route> */}
+          <Route path="*" element={<h1> A mistake </h1>} />
+        </Routes>
+      </div>
+    </div >
+  );
+>>>>>>> 222931565b090f2fe12eed29fa85cfa107381843
 }
 //   return (
 //     // <div className="App">

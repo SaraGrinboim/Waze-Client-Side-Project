@@ -1,7 +1,4 @@
-
-import React, { useContext, useRef, useState } from 'react'
-// import './login.css'
-// import { Link, } from "react-router-dom";
+import React, { useContext, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { auth } from '../firebaseSetup';
@@ -66,28 +63,6 @@ export default function Login() {
                 : (
                     <h2 >Welcome {user.email}</h2>
                 )}
-
         </div>
-
     )
 }
-
-// /* eslint-disable react-hooks/exhaustive-deps */
-// import React, { useEffect, useState } from 'react';
-// import { get } from '../api/user'
-// const Login: React.FC = () => {
-//     const [userName, setUserName] = useState('');
-
-//     useEffect( () => {
-//         debugger
-//         // const { data }= await get<User[]>();
-//            get()?.then((users:any)=>
-//             setUserName(users.data))
-//     }, [])
-//     return (
-//         <div>
-//             <h1>hello to {userName}</h1>
-//         </div>
-//     )
-// }
-// export default Login;
