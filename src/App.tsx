@@ -31,6 +31,7 @@ function App() {
           {/* <Route path="/system" element={<Users />}>
           <Route path="/:id" element={<CreateSystem/>}/>*
           </Route> */}
+          
           <Route path="*" element={<h1> A mistake </h1>} />
         </Routes>
       </div>
