@@ -1,5 +1,5 @@
 
-export type user = {
+export type User = {
     _id?:String,
     role:Erole,
     firstName:String,

@@ -16,7 +16,7 @@ export default function CreateSystem() {
     const addUser = async () => {
 
         <Alert severity="success">This is a success!</Alert>
-        const user: user = {
+        const user: User = {
             // _id:'',
             role: Erole.customer,
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 // import { useRecoilState, useSetRecoilState } from 'recoil';
 import { get } from '../api/user';
-import { user } from "../models/user.model";
+import { User } from "../models/user.model";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -22,7 +22,7 @@ const Users: React.FC = () => {
   return (
     <div>
         <ul>
-          {users.map((u: user) => (
+          {users.map((u: User) => (
             <Card sx={{ minWidth: 27 }}>
               <CardContent>
                 <li key={String(u._id)}>

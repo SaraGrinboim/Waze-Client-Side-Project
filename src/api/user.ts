@@ -22,7 +22,7 @@ export const getById = async (id: string) => {
     }
 }
 
-export const update = (id: string, user: user) => {
+export const update = (id: string, user: User) => {
     try {
         return axios.put(`http://localhost:3333/user/${id}`, user);
 
@@ -32,7 +32,7 @@ export const update = (id: string, user: user) => {
     }
 }
 
-export const add = (user: user) => {
+export const add = (user: User) => {
     try {
         return axios.post(`http://localhost:3333/user`, user);
     }
@@ -47,6 +47,6 @@ export const deleteById = (id: string) => {
 
     }
     catch (error) {
-        console.log('error in delete user', error);
+        console.log ('error in delete user', error);
     }
 }

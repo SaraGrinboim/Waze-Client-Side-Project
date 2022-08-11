@@ -37,7 +37,7 @@ export default function Systems() {
     return (
         <div>
         <ul>
-          {systems.map((s: system) => (
+          {systems.map((s: System) => (
             <Card sx={{ minWidth: 27 }}>
               <CardContent>
                 <li key={String(s._id)}>

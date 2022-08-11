@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 // import { systemecoilState, useSetRecoilState } from 'recoil';
 import { getSystemsByUrlName, deleteSystem } from '../api/system';
-import { system } from '../models/system.model';
+import { System } from '../models/system.model';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -12,7 +12,7 @@ import { Button, Card, CardContent, CardHeader, FormControl, Skeleton, Typograph
 
 const ShowSystem = () => {
     const { urlName } = useParams();
-    let s: system = {
+    let s: System = {
         _id: "",
         topic: "",
         objectName: "",

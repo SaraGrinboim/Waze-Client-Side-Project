@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { system } from '../models/system.model';
+import { System } from '../models/system.model';
 // import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 import { createSystem } from '../api/system';
@@ -19,7 +19,7 @@ export default function CreateSystem() {
 
 
   const addSystem = async () => {
-    const sys: system = {
+    const sys: System = {
       topic,
       objectName,
       ownerId,

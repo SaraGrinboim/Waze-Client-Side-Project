@@ -1,4 +1,4 @@
-export type system = {
+export type System = {
     _id?:String,
     topic: string,
     objectName: string,

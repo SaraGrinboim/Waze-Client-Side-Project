@@ -80,5 +80,5 @@ const ShowUser = () => {
 
 }
 
-export default User;
+export default ShowUser;
 
