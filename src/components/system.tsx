@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { getSystems } from '../api/system';
+import { System } from '../models/system.model';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Systems() {
+    
+    const navigate = useNavigate();
 
     const [systems, setSystems] = useState([]);
 
     useEffect(() => {
-        const systems = async () => {
+        async function getAllSystems() {
             try {
                 getSystems()?.then((systems) => {
                     console.log(systems);
@@ -19,62 +25,43 @@ export default function Systems() {
                 })
             }
             catch (error) {
-                console.error(error + 'in get systems to display');
+                console.error(error);
             }
         }
-        systems();
+        getAllSystems();
 
     }, [])
 
     return (
         <>
-        {systems.map(system => {
-            <p>njjnj</p>
-        })}
-            {systems?.map(system => {
+            {systems?.map((s: System) => (
                 <Card sx={{ minWidth: 275 }}>
                     <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Word of the Day
-                        </Typography>
-                        <Typography variant="h5" component="div">
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            adjective
-                        </Typography>
-                        <Typography variant="body2">
-                            well meaning and kindly.
-                            <br />
-                            {'"a benevolent smile"'}
-                        </Typography>
+                        <div key={String(s._id)}>
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                {s.topic}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                phone:{s.phone}
+                                <br />
+                                email:{s.email}
+                            </Typography>
+                            <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+                                <Button variant="text"><Link to={`/${s._id}`}> {s.topic + '  ' + s.objectName + '  ' + s.description}</Link></Button>{" "}<br />
+                            </Typography>
+                            <CardActions>
+                                <Button size="small" onClick=
+                                    {
+                                        () => navigate(`/system/getSystemByUrlName/:urlName`,
+                                         { state: { idSystem: s._id } })
+                                    }
+                                >show system</Button>
+                            </CardActions>
+                        </div>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small">Learn More</Button>
-                    </CardActions>
                 </Card>
-            })}
+            ))}
         </>
-        // {systems:[] ? <p>frh</p>: systems.map((s) =>
-        // <Card sx={{ minWidth: 275 }}>
-        //     <CardContent>
-        //         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        //             Word of the Day
-        //         </Typography>
-        //         <Typography variant="h5" component="div">
-        //         </Typography>
-        //         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        //             adjective
-        //         </Typography>
-        //         <Typography variant="body2">
-        //             well meaning and kindly.
-        //             <br />
-        //             {'"a benevolent smile"'}
-        //         </Typography>
-        //     </CardContent>
-        //     <CardActions>
-        //         <Button size="small">Learn More</Button>
-        //     </CardActions>
-        // </Card>
-        // )}
     );
+
 }
