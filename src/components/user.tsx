@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 // import { useRecoilState, useSetRecoilState } from 'recoil';
+import { Erole, User } from '../models/user.model';
 import { getById, deleteById } from '../api/user';
-import { Erole, user } from '../models/user.model';
 
-const User = () => {
+
+const ShowUser = () => {
     const { userId } = useParams();
-    let u:user={
+    let u:User={
         _id:"",
         role:Erole.admin,
         firstName:"",

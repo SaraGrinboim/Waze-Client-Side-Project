@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { getSystems } from '../api/system';
+
+import { System } from '../models/system.model';
 import { Link } from 'react-router-dom';
-import { system } from '../models/system.model';
+import { useNavigate } from 'react-router-dom';
+
+
 
 export default function Systems() {
+    
+    const navigate = useNavigate();
 
     const [systems, setSystems] = useState([]);
 
     useEffect(() => {
-        const systems = async () => {
+        async function getAllSystems() {
             try {
                 getSystems()?.then((systems) => {
                     console.log(systems);
@@ -21,10 +27,10 @@ export default function Systems() {
                 })
             }
             catch (error) {
-                console.error(error + 'in get systems to display');
+                console.error(error);
             }
         }
-        systems();
+        getAllSystems();
 
     }, [])
 
@@ -52,55 +58,4 @@ export default function Systems() {
     </div >
     );
 
-    // return (
-    //     <>
-    //         {/* {systems.map(system => {
-    //         <p>njjnj</p>
-    //     })} */}
-    //         {systems?.map(system => {
-    //             <Card sx={{ minWidth: 275 }}>
-    //                 <CardContent>
-    //                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //                         Word of the Day
-    //                     </Typography>
-    //                     <Typography variant="h5" component="div">
-    //                     </Typography>
-    //                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-    //                         adjective
-    //                     </Typography>
-    //                     <Typography variant="body2">
-    //                         well meaning and kindly.
-    //                         <br />
-    //                         {'"a benevolent smile"'}
-    //                     </Typography>
-    //                 </CardContent>
-    //                 <CardActions>
-    //                     <Button size="small">Learn More</Button>
-    //                 </CardActions>
-    //             </Card>
-    //         })}
-    //     </>
-    //     // {systems:[] ? <p>frh</p>: systems.map((s) =>
-    //     // <Card sx={{ minWidth: 275 }}>
-    //     //     <CardContent>
-    //     //         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-    //     //             Word of the Day
-    //     //         </Typography>
-    //     //         <Typography variant="h5" component="div">
-    //     //         </Typography>
-    //     //         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-    //     //             adjective
-    //     //         </Typography>
-    //     //         <Typography variant="body2">
-    //     //             well meaning and kindly.
-    //     //             <br />
-    //     //             {'"a benevolent smile"'}
-    //     //         </Typography>
-    //     //     </CardContent>
-    //     //     <CardActions>
-    //     //         <Button size="small">Learn More</Button>
-    //     //     </CardActions>
-    //     // </Card>
-    //     // )}
-    // );
 }
