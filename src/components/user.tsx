@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 // import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Erole, User } from '../models/user.model';
 import { getById, deleteById } from '../api/user';
-
+import Button from '@mui/material/Button';
 
 const ShowUser = () => {
     const { userId } = useParams();
