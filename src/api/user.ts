@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { User } from '../models/user.model';
 
 export const get = () => {
