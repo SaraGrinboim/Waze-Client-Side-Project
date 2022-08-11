@@ -25,7 +25,6 @@ function App() {
           <Route path="/user" element={<Users />}>
             {/* <Route path="/systems" element={<Systems />} /> */}
 
-
             {/* <Route path="/add" element={<CreateUser />} /> */}
             {/* <Route path=":userId" element={<User />} /> */}
             {/* <Route path=":id" element={< UpdateUser />} /> */}
