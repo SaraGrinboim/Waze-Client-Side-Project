@@ -1,9 +1,5 @@
 import axios from 'axios';
-<<<<<<< HEAD
 import { User } from '../models/user.model';
-=======
-import { user } from '../models/user.model';
->>>>>>> 222931565b090f2fe12eed29fa85cfa107381843
 
 export const get = async () => {
     try {
