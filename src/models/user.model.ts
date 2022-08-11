@@ -1,4 +1,14 @@
-export type User = {
-    userName: String,
-    password: String
+export type user = {
+    _id?:String,
+    role:Erole,
+    firstName:String,
+    lastName:String,
+    email:String,
+    phone:String
+}
+
+export enum Erole{
+    manager,
+    customer,
+    admin
 }
