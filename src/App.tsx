@@ -11,7 +11,7 @@ import CreateSystem from "./components/createSystem";
 import CreateUser from './components/createUser';
 import User from './components/user';
 import Systems from './components/system';
-
+import ShowSystem from './components/showSystem';
 
 function App() {
   // const emailRef = useRef<HTMLInputElement>(null);
@@ -26,10 +26,11 @@ function App() {
           <Route path="" element={<h1>Hello ✋</h1>} />
           <Route path="/add" element={<CreateSystem />} />
           <Route path="/addUser" element={<CreateUser />} />
-          <Route path=":userId" element={<User />} />
+          <Route path="/system" element={<Systems />} />
+          <Route path="/system/:urlName" element={<ShowSystem />} />
+          <Route path="/user/:userId" element={<User />} />
           <Route path="/user" element={<Users />}>
             {/* <Route path="/systems" element={<Systems />} /> */}
-
             {/* <Route path="/add" element={<CreateUser />} /> */}
             {/* <Route path=":userId" element={<User />} /> */}
             {/* <Route path=":id" element={< UpdateUser />} /> */}
@@ -37,6 +38,7 @@ function App() {
           {/* <Route path="/system" element={<Users />}>
           <Route path="/:id" element={<CreateSystem/>}/>*
           </Route> */}
+          
           <Route path="*" element={<h1> A mistake </h1>} />
         </Routes>
       </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { System } from '../models/system.model';
+import { system } from '../models/system.model';
 
 export const getSystems = async () => {
 
@@ -35,7 +35,7 @@ export const getSystemsByUrlName = async (urlName: string) => {
 
 }
 
-export const createSystem = async (system: System) => {
+export const createSystem = async (system: system) => {
 
     try {
         return axios.post(`http://localhost:3333/system`, system)
@@ -45,7 +45,7 @@ export const createSystem = async (system: System) => {
 
 }
 
-export const updateSystem = async (id: string, system: System) => {
+export const updateSystem = async (id: string, system: system) => {
 
     try {
         return axios.put(`http://localhost:3333/system/${id}`, system)

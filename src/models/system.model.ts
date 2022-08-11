@@ -1,5 +1,5 @@
-export type System = {
-    _id:String,
+export type system = {
+    _id?:String,
     topic: string,
     objectName: string,
     ownerId: String;
