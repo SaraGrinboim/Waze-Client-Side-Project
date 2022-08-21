@@ -1,4 +1,5 @@
 export type System = {
+  
     _id?:String,
     topic: string,
     objectName: string,
@@ -7,4 +8,5 @@ export type System = {
     email: String;
     phone: String;
     urlName: String;
+    logoUrl?: String;
 }

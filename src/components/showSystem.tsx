@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 // import { systemecoilState, useSetRecoilState } from 'recoil';
-import { getSystemsByUrlName, deleteSystem, updateSystem } from '../api/system';
-import { System } from '../models/system.model';
+
+import { getSystemsByUrlName, deleteSystem, getSystemById, updateSystem } from '../api/system';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -11,31 +11,42 @@ import { Button, Card, CardContent, Typography, TextField } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import swal from 'sweetalert';
+import { System } from '../models/system.model';
+
+
 
 const ShowSystem = () => {
-
+    const navigate = useNavigate();
+    const { id } = useParams();
     const { urlName } = useParams();
-    console.log(urlName);
+
 
     let s: System = {
-        _id: "",
         topic: "",
         objectName: "",
         ownerId: "",
         description: "",
         email: "",
         phone: "",
-        urlName: ""
+        urlName: "",
+        logoUrl: "",
     };
     const [system, setSystem] = useState(s);
     const [edit, setEdit] = useState(false);
 
-    const navigate = useNavigate();
+
     // const [name, setName] = useState(system?.name);
     useEffect(() => {
-        getSystemsByUrlName(String(urlName)).then((s) => {
-            setSystem(s);
-        })
+        if (id)
+            getSystemById(String(id)).then((s) => {
+                setSystem(s);
+            })
+            else{
+                getSystemsByUrlName(String(urlName)).then((s) => {
+                    setSystem(s);
+                })
+            }
+
         if (!system) {
             console.log('no system found');
             navigate('/systems');  // דוגמא לניווט ע"י קוד
@@ -44,31 +55,83 @@ const ShowSystem = () => {
 
 
     const Delete = async () => {
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this system file!",
-            icon: "warning",
-            dangerMode: true,
-        })
-            .then(async function name(willDelete: any) {
 
-                if (willDelete) {
-                    try {
-                        let result = await deleteSystem(String(system._id));
-                        console.log(result);
-                        swal("Poof! Your system has been deleted!", {
-                            icon: "success",
-                        });
-                    } catch (error) {
-                        console.error(error);
-                    }
-
-                } else {
-                    swal("Your system is safe!");
-                }
-            });
+        let result = await deleteSystem(String(system._id));
+        console.log(result);
         navigate('/systems');
     };
+
+    //     return system ?
+    //         <Card>
+    //             <CardContent>
+    //                 <form className='auth-inner'
+    //                 //   component="form"
+    //                 //   sx={{
+    //                 //     '& > :not(style)': { m: 1, width: '25ch' },
+    //                 //   }}
+    //                 //   noValidate
+    //                 //   autoComplete="off"
+    //                 >
+    //                     {/* <h3>system {system._id}</h3> */}
+    //                     <Typography variant="h3">The system</Typography>
+
+    //                     {/* <TextField id="outlined-basic" label="topic" variant="outlined"  className="mb-3"/>
+    //   <TextField id="outlined-basic" label="objectName" variant="outlined" className="mb-3" /> */}
+    //                     {/* <TextField id="filled-basic" label="Filled" variant="filled" />
+    //   <TextField id="standard-basic" label="Standard" variant="standard" /> */}
+    //                     <div className="mb-3">
+    //                         {/* <label>topic:  {system.topic} </label> */}
+    //                         <Typography variant="h5">topic:  {system.topic}</Typography>
+
+    //                     </div>
+    //                     <div className="mb-3">
+    //                         <Typography variant="h5">objectName:   {system.objectName}</Typography>
+
+    //                     </div>
+    //                     <div className="mb-3">
+    //                         <Typography variant="h5">description:   {system.description}</Typography>
+    //                     </div>
+    //                     <div className="mb-3">
+    //                         <Typography variant="h5">urlName:   {system.urlName}</Typography>
+    //                     </div>
+    //                     <div className="mb-3">
+    //                         <Typography variant="h5">email address:   {system.email}</Typography>
+    //                     </div>
+    //                     <div className="mb-3">
+    //                         <Typography variant="h5">phone number:   {system.phone}</Typography>
+    //                     </div>
+    //                     <div className="d-grid">
+    //                         <Button variant="text" onClick={Delete}>to delete</Button>{" "}<br />
+    //                     </div>
+    //                 </form>
+    //             </CardContent>
+    //         </Card> : <h1>not system found</h1>;
+
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this system file!",
+        icon: "warning",
+        dangerMode: true,
+    })
+        .then(async function name(willDelete: any) {
+
+            if (willDelete) {
+                try {
+                    let result = await deleteSystem(String(system._id));
+                    console.log(result);
+                    swal("Poof! Your system has been deleted!", {
+                        icon: "success",
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+
+            } else {
+                swal("Your system is safe!");
+            }
+        });
+    navigate('/systems');
+
 
     const topic: any = useRef();
     const objectName: any = useRef();
@@ -79,7 +142,7 @@ const ShowSystem = () => {
     const URLName: any = useRef();
 
     const Edit = async () => {
-        
+
         const newSystem: System = {
             "topic": topic.value,
             "objectName": objectName.value,
@@ -87,7 +150,8 @@ const ShowSystem = () => {
             "description": description.value,
             "email": email.value,
             "phone": phone.value,
-            "urlName": URLName.value
+            "urlName": URLName.value,
+            "logoUrl": URLName.value
         }
 
         swal({
@@ -144,6 +208,9 @@ const ShowSystem = () => {
                             <div className="mb-3">
                                 <Typography variant="h5">phone number:   {system.phone}</Typography>
                             </div>
+                            <div className="mb-3">
+                                <Typography variant="h5">logo url:   {system.logoUrl}</Typography>
+                            </div>
                             <div className="d-grid">
                                 <Button onClick={Delete} startIcon={<DeleteIcon />}></Button>
                                 <Button onClick={() => setEdit(true)} startIcon={<ModeEditOutlineIcon />}></Button>
@@ -185,6 +252,7 @@ const ShowSystem = () => {
             }
         </>
     );
+
 
 }
 export default ShowSystem;

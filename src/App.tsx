@@ -10,28 +10,27 @@ import CreateUser from './components/createUser';
 import ShowSystem from "./components/showSystem";
 import User from './components/user';
 import Systems from './components/system';
-
 import { link } from 'fs';
 function App() {
   return (
     <div className="App">
 
       <div>
-        
+
         <Routes>
           <Route path="" element={<Login />} />
           <Route path="add" element={<CreateSystem />} />
-          <Route path="addUser" element={<CreateUser />} />
-          <Route path=":userId" element={<User />} />
 
-          <Route path="user" element={<Users />} />
-          {/* <Route  path="systems" element={<Systems />} >
-            <Route  path=":id" element={<ShowSystem />} />
-          </Route> */}
-          <Route  path="systems" element={<Systems />} />
-          <Route  path="systems/:id" element={<ShowSystem />} />
-          <Route path="systemDetails/:urlName" element={<ShowSystem/>}/>
+          <Route path=":urlName" element={<ShowSystem />} />
 
+          <Route path="user" element={<Users />} >
+            {/* <Route  path="systems" element={<Systems />} >
+            <Route  path=":id" element={<ShowSystem />} /> */}
+            <Route path="addUser" element={<CreateUser />} />
+            <Route path=":userId" element={<User />} />
+          </Route>
+          <Route path="systems" element={<Systems />} />
+          <Route path="systems/:id" element={<ShowSystem />} />
           <Route path="*" element={<h1> A mistake </h1>} />
         </Routes>
       </div>

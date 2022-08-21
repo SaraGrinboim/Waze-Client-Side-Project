@@ -4,9 +4,10 @@ import { System } from '../models/system.model';
 // import TextField from '@mui/material/TextField';
 import { createSystem } from '../api/system';
 import { Button, TextField } from '@mui/material';
-
+import {  useNavigate } from 'react-router-dom';
 
 export default function CreateSystem() {
+  const navigate = useNavigate();
 
   const [topic, setTopic] = useState('');
   const [objectName, setObjectName] = useState('');
@@ -15,7 +16,7 @@ export default function CreateSystem() {
   const [phone, setPhone] = useState('');
   const [ownerId, setOwnerId] = useState('');
   const [urlName, setUrlName] = useState('');
-
+  const [logoUrl, setLogoUrl] = useState('');
 
 
   const addSystem = async () => {
@@ -24,18 +25,21 @@ export default function CreateSystem() {
       objectName,
       ownerId,
       description,
-      email,
-      
+      email,  
       phone,
-      urlName
+      urlName,
+      logoUrl
     }
     console.log(sys);
     let result = await createSystem(sys);
     console.log(result);
+    navigate('/systems');
   }
 
   return (
-    <form className='auth-inner' onSubmit={addSystem}
+    <form className='auth-inner' 
+    // onSubmit={addSystem}
+    
     //   component="form"
     //   sx={{
     //     '& > :not(style)': { m: 1, width: '25ch' },
@@ -69,8 +73,12 @@ export default function CreateSystem() {
       <div className="mb-3">
       <TextField id="outlined-basic" label="enter urlName" variant="outlined" onChange={(e) => setUrlName(e.target.value)}></TextField>
       </div>
+      <div className="mb-3">
+      <TextField id="outlined-basic" label="enter logo url" variant="outlined" onChange={(e) => setLogoUrl(e.target.value)}></TextField>
+      </div>
       <div className="d-grid">
-        <Button variant="outlined" type="submit">Submit</Button>
+        {/* <Button variant="outlined" type="submit">Submit</Button> */}
+        <Button variant="outlined" onClick={addSystem}>Submit</Button>
       </div>
     </form>
   );
