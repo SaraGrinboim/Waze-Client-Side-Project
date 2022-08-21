@@ -82,7 +82,6 @@ const ShowSystem = () => {
 
     const topic: any = useRef();
     const objectName: any = useRef();
-    const ownerId: any = useRef();
     const description: any = useRef();
     const email: any = useRef();
     const phone: any = useRef();
@@ -92,12 +91,12 @@ const ShowSystem = () => {
 
         const newSystem: System = {
             "topic": topic.current?.value,
-            "objectName": objectName.value,
-            "ownerId": ownerId.value,
-            "description": description.value,
-            "email": email.value,
-            "phone": phone.value,
-            "urlName": URLName.value
+            "objectName": objectName.current?.value,
+            "ownerId": system.ownerId,
+            "description": description.current?.value,
+            "email": email.current?.value,
+            "phone": phone.current?.value,
+            "urlName": URLName.current?.value
         }
         console.log("newSystem: " + newSystem);
         swal({
@@ -150,6 +149,9 @@ const ShowSystem = () => {
                                 <Typography variant="h5">urlName:   {system.urlName}</Typography>
                             </div>
                             <div className="mb-3">
+                                <Typography variant="h5">owner Id:   {system.ownerId}</Typography>
+                            </div>
+                            <div className="mb-3">
                                 <Typography variant="h5">email address:   {system.email}</Typography>
                             </div>
                             <div className="mb-3">
@@ -167,27 +169,24 @@ const ShowSystem = () => {
             {
                 edit &&
                 <form className='auth-inner' onSubmit={Edit}>
-                    <h3>create new system</h3>
+                    <h3>change this system</h3>
                     <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter topic" variant="outlined" inputRef={topic}></TextField>
+                        <TextField required type="string" id="outlined-basic" label="enter topic" variant="outlined" inputRef={topic}></TextField>
                     </div>
                     <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter objectName" variant="outlined" inputRef={objectName}></TextField>
+                        <TextField required type="string" id="outlined-basic" label="enter objectName" variant="outlined" inputRef={objectName}></TextField>
                     </div>
                     <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter ownerId" variant="outlined" inputRef={ownerId}></TextField>
+                        <TextField required type="string" id="outlined-basic" label="enter description" variant="outlined" inputRef={description}></TextField>
                     </div>
                     <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter description" variant="outlined" inputRef={description}></TextField>
+                        <TextField required type="email" id="outlined-basic" label="enter email address" variant="outlined" inputRef={email}></TextField>
                     </div>
                     <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter email address" variant="outlined" inputRef={email}></TextField>
+                        <TextField required type="number" id="outlined-basic" label="enter phone number" variant="outlined" inputRef={phone}></TextField>
                     </div>
                     <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter phone number" variant="outlined" inputRef={phone}></TextField>
-                    </div>
-                    <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter urlName" variant="outlined" inputRef={URLName}></TextField>
+                        <TextField required type="string" id="outlined-basic" label="enter urlName" variant="outlined" inputRef={URLName}></TextField>
                     </div>
                     <div className="d-grid">
                         <Button variant="outlined" type="submit">Submit</Button>
