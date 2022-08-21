@@ -15,6 +15,21 @@ export default function Systems() {
 
     const [systems, setSystems] = useState([]);
 
+    // useEffect(() => {
+    //     async function getAllSystems() {
+    //         try {
+    //             getSystems()?.then((systems) => {
+    //                 console.log(systems);
+    //                 setSystems(systems)
+    //             })
+    //         }
+    //         catch (error) {
+    //             console.error(error);
+    //         }
+    //     }
+    //     getAllSystems();
+
+    // }, [])
     useEffect(() => {
         async function getAllSystems() {
             try {
@@ -34,7 +49,7 @@ export default function Systems() {
     return (
         <>
             {systems?.map((s: System) => (
-                <Card sx={{ minWidth: 275 }}>
+                <Card sx={{ minWidth: 275 }} >
                     <CardContent>
                         <div key={String(s._id)}>
                             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -46,7 +61,7 @@ export default function Systems() {
                                 email:{s.email}
                             </Typography>
                             <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                                <Button variant="text"><Link to={`/${s._id}`}> {s.topic + '  ' + s.objectName + '  ' + s.description}</Link></Button>{" "}<br />
+                                <Button variant="text"><Link to={`${s._id}`}> enter to this system </Link></Button>{" "}<br />
                             </Typography>
                             <CardActions>
                                 <Button size="small" onClick=
@@ -60,6 +75,9 @@ export default function Systems() {
                     </CardContent>
                 </Card>
             ))}
+            <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+                <Link to={`/add`} style={{ listStyle: "none" }}> to add system</Link>{" "}<br />
+            </Typography>
         </>
     );
 

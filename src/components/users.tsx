@@ -31,17 +31,13 @@ const Users: React.FC = () => {
                     <Button variant="contained"><Link to={`/user/${u._id}`}> {u.firstName + ' ' + u.lastName}</Link></Button>{" "}<br />
                     </Typography>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                    <Link to={`/add`} style={{listStyle: "none"}}> to add system</Link>{" "}<br />
-                    </Typography>
-                    <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                     <Link to={`/addUser`}> to add user</Link>{" "}<br />
                     </Typography>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                     <Link to={`/system/getSystemByUrlName/:urlName`}> to show system</Link>{" "}<br />
                     </Typography>
                     {/* <Button variant="contained">Contained</Button>
-                    <Button variant="outlined">Outlined</Button> */}
-         
+                    <Button variant="outlined">Outlined</Button> */}        
                 </li>
               </CardContent>
             </Card>
