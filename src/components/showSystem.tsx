@@ -124,7 +124,6 @@ const ShowSystem = () => {
 
                 if (willDelete) {
                     try {
-                        debugger;
                         console.log(newSystem);
                         let result = await updateSystem(String(system._id), newSystem);
                         console.log(result);
