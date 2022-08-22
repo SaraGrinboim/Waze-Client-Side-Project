@@ -99,18 +99,19 @@ const ShowSystem = () => {
     const phone: any = useRef();
     const ownerId: any = useRef();
     const URLName: any = useRef();
+    const LogoUrl: any = useRef();
 
     const Edit = async () => {
 
         const newSystem: System = {
-            "topic": topic.value,
-            "objectName": objectName.value,
-            "ownerId": ownerId.value,
-            "description": description.value,
-            "email": email.value,
-            "phone": phone.value,
-            "urlName": URLName.value,
-            "logoUrl": URLName.value
+            "topic": topic.current?.value,
+            "objectName": objectName.current?.value,
+            "ownerId": system.ownerId,
+            "description": description.current?.value,
+            "email": email.current?.value,
+            "phone": phone.current?.value,
+            "urlName": URLName.current?.value,
+            "logoUrl": LogoUrl.current?.value
         }
         console.log("newSystem: " + newSystem);
         swal({
@@ -124,6 +125,7 @@ const ShowSystem = () => {
                 if (willDelete) {
                     try {
                         debugger;
+                        console.log(newSystem);
                         let result = await updateSystem(String(system._id), newSystem);
                         console.log(result);
                         swal("Poof! Your system has been edited!", {
@@ -204,6 +206,9 @@ const ShowSystem = () => {
                     </div>
                     <div className="mb-3">
                         <TextField required type="string" id="outlined-basic" label="enter urlName" variant="outlined" inputRef={URLName}></TextField>
+                    </div>
+                    <div className="mb-3">
+                        <TextField required type="string" id="outlined-basic" label="enter logo url" variant="outlined" inputRef={LogoUrl}></TextField>
                     </div>
                     <div className="d-grid">
                         <Button variant="outlined" type="submit">Submit</Button>

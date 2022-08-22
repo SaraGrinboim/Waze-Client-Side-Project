@@ -6,13 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './provider/AuthProvider';
 import { BrowserRouter } from 'react-router-dom';
 
-export const ref = React.useRef<HTMLDivElement>(null);
-const [map, setMap] = React.useState<google.maps.Map>();
-React.useEffect(() => {
-  if (ref.current && !map) {
-    setMap(new window.google.maps.Map(ref.current, {}));
-  }
-}, [ref, map]);
+// export const ref = React.useRef<HTMLDivElement>(null);
+// const [map, setMap] = React.useState<google.maps.Map>();
+// React.useEffect(() => {
+//   if (ref.current && !map) {
+//     setMap(new window.google.maps.Map(ref.current, {}));
+//   }
+// }, [ref, map]);
 
 // because React does not do deep comparisons, a custom hook is used
 // see discussion in https://github.com/googlemaps/js-samples/issues/946
@@ -22,21 +22,21 @@ React.useEffect(() => {
 //   }
 // }, [map, options]);
 
-React.useEffect(() => {
-  if (map) {
-    ["click", "idle"].forEach((eventName) =>
-      google.maps.event.clearListeners(map, eventName)
-    );
+// React.useEffect(() => {
+//   if (map) {
+//     ["click", "idle"].forEach((eventName) =>
+//       google.maps.event.clearListeners(map, eventName)
+//     );
 
-    if (onclick) {
-      map.addListener("click", onclick);
-    }
+//     if (onclick) {
+//       map.addListener("click", onclick);
+//     }
 
-    if (onIdle) {
-      map.addListener("idle", () => onIdle(map));
-    }
-  }
-}, [map, onclick, onIdle]);
+//     if (onIdle) {
+//       map.addListener("idle", () => onIdle(map));
+//     }
+//   }
+// }, [map, onclick, onIdle]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -66,11 +66,11 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
 
   return (
     <>
-      <div ref={ref} style={style} />
+      {/* <div ref={ref} /> */}
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           // set the map prop on the child component
-          return React.cloneElement(child, { map });
+          // return React.cloneElement(child, { Map });
         }
       })}
     </>
