@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@fontsource/roboto": "^4.5.8",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.1",
     "@testing-library/jest-dom": "^5.16.4",
@@ -51,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.49.2"
   }
 }
