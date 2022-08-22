@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { System } from '../models/system.model';
-// import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
 import { createSystem } from '../api/system';
 import { Button, TextField } from '@mui/material';
 import {  useNavigate } from 'react-router-dom';
@@ -16,8 +14,6 @@ export default function CreateSystem() {
   const [phone, setPhone] = useState('');
   const [ownerId, setOwnerId] = useState('');
   const [urlName, setUrlName] = useState('');
-
-
 
   const addSystem = async () => {
     const sys: System = {
