@@ -75,9 +75,6 @@ export default function Systems() {
     )
 }
 
-
-
-
         //     <Card sx={{ minWidth: 275, alignItems: 'center', }}>
 
         //         <CardContent>
