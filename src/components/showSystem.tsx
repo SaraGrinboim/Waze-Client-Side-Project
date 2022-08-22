@@ -133,7 +133,6 @@ const ShowSystem = () => {
                     } catch (error) {
                         console.error(error);
                     }
-
                 } else {
                     swal("Your system is safe!");
                 }
