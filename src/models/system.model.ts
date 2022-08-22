@@ -8,4 +8,5 @@ export type System = {
     email: String;
     phone: String;
     urlName: String;
+    logoUrl?: String;
 }

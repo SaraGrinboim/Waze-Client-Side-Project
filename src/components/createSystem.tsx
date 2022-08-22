@@ -15,6 +15,8 @@ export default function CreateSystem() {
   const [ownerId, setOwnerId] = useState('');
   const [urlName, setUrlName] = useState('');
 
+  const [logoUrl, setLogoUrl] = useState('');
+
   const addSystem = async () => {
     const sys: System = {
       topic,
@@ -23,7 +25,8 @@ export default function CreateSystem() {
       description,
       email,  
       phone,
-      urlName
+      urlName,
+      logoUrl
     }
     console.log(sys);
     let result = await createSystem(sys);
@@ -67,6 +70,9 @@ export default function CreateSystem() {
       </div>
       <div className="mb-3">
       <TextField id="outlined-basic" label="enter urlName" variant="outlined" onChange={(e) => setUrlName(e.target.value)}></TextField>
+      </div>
+      <div className="mb-3">
+      <TextField id="outlined-basic" label="enter logo url" variant="outlined" onChange={(e) => setLogoUrl(e.target.value)}></TextField>
       </div>
       <div className="d-grid">
         {/* <Button variant="outlined" type="submit">Submit</Button> */}

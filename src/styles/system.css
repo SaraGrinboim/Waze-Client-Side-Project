@@ -1,0 +1,26 @@
+.css-1ri6ub7-MuiPaper-root-MuiCard-root {
+
+    height: 55vh !important;
+    /* width: 300px !important; */
+    box-shadow: 0px 0px 20px 1px #dfdede !important;
+    border-radius: 33px !important;
+    align-items: center !important;
+    margin: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    margin-bottom: 20px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    width: 100vw !important;
+    flex-wrap: wrap !important;
+}
+
+.css-1ri6ub7-MuiPaper-root-MuiCard-root div {
+
+    width: 75vw !important;
+    display: flex !important;
+    flex-direction: row !important;
+    margin: auto !important;
+    justify-content: space-evenly !important;
+    flex-wrap: wrap !important;
+}
