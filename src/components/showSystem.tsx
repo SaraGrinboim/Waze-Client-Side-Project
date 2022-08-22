@@ -34,9 +34,16 @@ const ShowSystem = () => {
 
     // const [name, setName] = useState(system?.name);
     useEffect(() => {
-        getSystemById(String(id)).then((s) => {
-            setSystem(s);
-        })
+        if (id)
+            getSystemById(String(id)).then((s) => {
+                setSystem(s);
+            })
+            else{
+                getSystemsByUrlName(String(urlName)).then((s) => {
+                    setSystem(s);
+                })
+            }
+
         if (!system) {
             console.log('no system found');
             navigate('/systems');  // דוגמא לניווט ע"י קוד
@@ -129,18 +136,31 @@ const ShowSystem = () => {
     const description: any = useRef();
     const email: any = useRef();
     const phone: any = useRef();
+    const ownerId: any = useRef();
     const URLName: any = useRef();
+    const LogoUrl: any = useRef();
 
     const Edit = async () => {
 
         const newSystem: System = {
+<<<<<<<<< Temporary merge branch 1
+            "topic": topic.current?.value,
+            "objectName": objectName.current?.value,
+            "ownerId": system.ownerId,
+            "description": description.current?.value,
+            "email": email.current?.value,
+            "phone": phone.current?.value,
+            "urlName": URLName.current?.value
+=========
             "topic": topic.value,
             "objectName": objectName.value,
             "ownerId": ownerId.value,
             "description": description.value,
             "email": email.value,
             "phone": phone.value,
-            "urlName": URLName.value
+            "urlName": URLName.value,
+            "logoUrl": URLName.value
+>>>>>>>>> Temporary merge branch 2
         }
 
         swal({
@@ -153,6 +173,7 @@ const ShowSystem = () => {
 
                 if (willDelete) {
                     try {
+                        debugger;
                         let result = await updateSystem(String(system._id), newSystem);
                         console.log(result);
                         swal("Poof! Your system has been edited!", {
@@ -226,10 +247,7 @@ const ShowSystem = () => {
                         <TextField type="string" id="outlined-basic" label="enter email address" variant="outlined" inputRef={email}></TextField>
                     </div>
                     <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter phone number" variant="outlined" inputRef={phone}></TextField>
-                    </div>
-                    <div className="mb-3">
-                        <TextField type="string" id="outlined-basic" label="enter urlName" variant="outlined" inputRef={URLName}></TextField>
+                        <TextField required type="string" id="outlined-basic" label="enter urlName" variant="outlined" inputRef={URLName}></TextField>
                     </div>
                     <div className="d-grid">
                         <Button variant="outlined" type="submit">Submit</Button>

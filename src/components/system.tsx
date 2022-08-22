@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 import CardMedia from '@mui/material/CardMedia';
-import '../styles/system.css' ;
+import '../styles/system.css';
 
 export default function Systems() {
 
@@ -36,41 +36,52 @@ export default function Systems() {
     }, [])
 
     return (
-        <div>
-            {systems?.map((s: System) => (
-                <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia
-                        component="img"
-                        height="140"
-                    // srcSet={s.logoUrl}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {s.topic}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {s.description}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button variant="outlined" onClick=
-                            {
-                                () => navigate(`${s.urlName}`)
-                            }
-                        >show {s.topic} details</Button>
-                        {/* <Button size="small">Learn More</Button> */}
-                    </CardActions>
-                </Card>
-            ))}
-            {/* <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+        <div className="card-systems">
+            <div className="card-systems-container">
+                {systems?.map((s: System) => (
+                    <Card sx={{ maxWidth: 345 }} className="card">
+                        {/* <CardMedia
+                            component="img"
+                            height="140"
+                        // srcSet={s.logoUrl}
+                        />*/}
+
+                        <img
+                            src={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format`}
+                            srcSet={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                            // alt={item.title}
+                            loading="lazy"></img> 
+                        {/* <Typography gutterBottom variant="h5" component="div">
+                            {s.logoUrl}
+                        </Typography> */}
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                {s.topic}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {s.description}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button variant="outlined" onClick=
+                                {
+                                    () => navigate(`/systems/${s._id}`)
+                                }
+                            >show {s.topic} details</Button>
+                            {/* <Button size="small">Learn More</Button> */}
+                        </CardActions>
+                    </Card>
+                ))}
+                {/* <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                 <Link to={`/add`} style={{ listStyle: "none" }}> to add system</Link>{" "}<br />
             </Typography> */}
-
+            </div>
             <Button variant="outlined" onClick=
-                            {
-                                () => navigate('/add')
-                            }
-                        >add system</Button>
+                {
+                    () => navigate('/add')
+                }
+            >add system</Button>
+
         </div>
     )
 }
