@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import * as React from 'react';
 import CardMedia from '@mui/material/CardMedia';
 import '../styles/system.css';
+import AutoComplete from './autoComplete'
 
 export default function Systems() {
 
@@ -37,19 +38,20 @@ export default function Systems() {
 
     return (
         <div className="card-systems">
+            <AutoComplete />
             <div className="card-systems-container">
                 {systems?.map((s: System) => (
-                    <Card sx={{ maxWidth: 345, backgroundImage: `${s.logoUrl}`}} className="card">
+                    <Card sx={{ maxWidth: 345, backgroundImage: `${s.logoUrl}` }} className="card">
                         {/* <CardMedia
                             component="img"
                             height="140"
                         // srcSet={s.logoUrl}
                         />*/}
-                        <img
+                        <img className='img'
                             src={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format`}
                             srcSet={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                             // alt={item.title}
-                            loading="lazy"></img> 
+                            loading="lazy"></img>
                         {/* <Typography gutterBottom variant="h5" component="div">
                             {s.logoUrl}
                         </Typography> */}
@@ -62,11 +64,10 @@ export default function Systems() {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button variant="outlined" onClick=
-                                {
-                                    () => navigate(`/systems/${s._id}`)
-                                }
-                            >show {s.topic} details</Button>
+                            <Button variant="outlined"
+                                onClick={() => navigate(`/systems/${s._id}`)}>
+                                show {s.topic} details
+                            </Button>
                             {/* <Button size="small">Learn More</Button> */}
                         </CardActions>
                     </Card>

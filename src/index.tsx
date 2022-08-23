@@ -98,15 +98,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-
     <AuthProvider>
       <BrowserRouter>
-        <StyledEngineProvider injectFirst>
           <App />
-        </StyledEngineProvider>
       </BrowserRouter>
     </AuthProvider>
-
   </React.StrictMode>
 );
 
