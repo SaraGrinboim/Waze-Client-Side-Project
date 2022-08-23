@@ -1,35 +1,39 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import React from 'react';
+// import google from 'google';
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBL9SengOBv22kYKJDCPRUSvgt_orH7q0M&libraries=places&callback=initMap">
+</script>
+const AutoComplete = () => {
+    const center = { lat: 50.064192, lng: -130.605469 };
+    // Create a bounding box with sides ~10km away from the center point
+    const defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
+    const input = document.getElementById("pac-input") as HTMLInputElement;
+    const options = {
+        bounds: defaultBounds,
+        componentRestrictions: { country: "us" },
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
 
-export default function ComboBox() {
-  return (
-    <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="marker" />}
-    />
-  );
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
+    autocomplete.setFields(["place_id", "geometry", "name"]);
+
+    return (
+        <div>
+
+            <input id="searchTextField" type="text" size={50} placeholder="Anything you want!" />
+        </div>
+    )
+
 }
-//לכאן צריך להביא מיקומים שלנו
-const top100Films = [
-  { label: 'The Prestige', year: 2006 },
-  { label: 'The Lion King', year: 1994 },
-  { label: 'Apocalypse Now', year: 1979 },
-  { label: 'Alien', year: 1979 },
-  { label: 'Sunset Boulevard', year: 1950 },
-  { label: 'The Great Dictator', year: 1940 },
-  { label: 'Cinema Paradiso', year: 1988 },
-  { label: 'The Lives of Others', year: 2006 },
-  { label: 'Grave of the Fireflies', year: 1988 },
-  { label: 'Paths of Glory', year: 1957 },
-  { label: 'Django Unchained', year: 2012 },
-  { label: 'The Shining', year: 1980 },
-  { label: 'WALL·E', year: 2008 },
-  { label: 'American Beauty', year: 1999 },
-  { label: 'The Dark Knight Rises', year: 2012 },
-  { label: 'Princess Mononoke', year: 1997 },
+export default AutoComplete;
 
-];
+
+
+
