@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 // import { systemecoilState, useSetRecoilState } from 'recoil';
+
 import { getSystemsByUrlName, deleteSystem, getSystemById, updateSystem } from '../api/system';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -13,9 +14,8 @@ import swal from 'sweetalert';
 import { System } from '../models/system.model';
 import '../styles/system.css';
 const ShowSystem = () => {
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const { urlName } = useParams();
+
+
     let s: System = {
         topic: "",
         objectName: "",
@@ -26,9 +26,10 @@ const ShowSystem = () => {
         urlName: "",
         logoUrl: "",
     };
+    const navigate = useNavigate();
+    const { urlName, id } = useParams();
     const [system, setSystem] = useState(s);
     const [edit, setEdit] = useState(false);
-    // const [name, setName] = useState(system?.name);
     useEffect(() => {
         if (id)
             getSystemById(String(id)).then((s) => {
@@ -37,15 +38,16 @@ const ShowSystem = () => {
             })
         else {
             getSystemsByUrlName(String(urlName)).then((s) => {
-                console.log(s);
                 setSystem(s);
             })
         }
         if (!system) {
-            console.log('no system found');
-            navigate('/systems');  // דוגמא לניווט ע"י קוד
+            alert('no system found');
+            navigate('/systems');
         }
     }, []);
+
+
     const Delete = async () => {
         swal({
             title: "Are you sure?",
@@ -71,16 +73,15 @@ const ShowSystem = () => {
                 }
             });
         navigate('/systems');
-        // let result = await deleteSystem(String(system._id));
-        // console.log(result);
-        // navigate('/systems');
+
+
     };
+
     const topic: any = useRef();
     const objectName: any = useRef();
     const description: any = useRef();
     const email: any = useRef();
     const phone: any = useRef();
-    const ownerId: any = useRef();
     const URLName: any = useRef();
     const LogoUrl: any = useRef();
     const Edit = async () => {
@@ -95,6 +96,7 @@ const ShowSystem = () => {
             "logoUrl": LogoUrl.current?.value
         }
         console.log("newSystem: " + newSystem);
+
         swal({
             title: "Are you sure?",
             text: "Once edited, you will not be able to recover this system file!",
@@ -118,6 +120,7 @@ const ShowSystem = () => {
                 }
             });
         navigate('/systems');
+
     };
     return (
         <>
@@ -189,4 +192,5 @@ const ShowSystem = () => {
         </>
     );
 }
+// }
 export default ShowSystem;
