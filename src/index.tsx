@@ -6,45 +6,34 @@ import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './provider/AuthProvider';
 import { BrowserRouter } from 'react-router-dom';
 
-// export const ref = React.useRef<HTMLDivElement>(null);
-// const [map, setMap] = React.useState<google.maps.Map>();
-// React.useEffect(() => {
-//   if (ref.current && !map) {
-//     setMap(new window.google.maps.Map(ref.current, {}));
-//   }
-// }, [ref, map]);
+export const ref = React.useRef<HTMLDivElement>(null);
 
-// because React does not do deep comparisons, a custom hook is used
-// see discussion in https://github.com/googlemaps/js-samples/issues/946
-// useDeepCompareEffectForMaps(() => {
-//   if (map) {
-//     map.setOptions(options);
-//   }
-// }, [map, options]);
-
-// React.useEffect(() => {
-//   if (map) {
-//     ["click", "idle"].forEach((eventName) =>
-//       google.maps.event.clearListeners(map, eventName)
-//     );
-
-//     if (onclick) {
-//       map.addListener("click", onclick);
-//     }
-
-//     if (onIdle) {
-//       map.addListener("idle", () => onIdle(map));
-//     }
-//   }
-// }, [map, onclick, onIdle]);
-
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
-const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
+export const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>();
+  const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
+  const [zoom, setZoom] = React.useState(3); // initial zoom
+  const [map, setMap] = React.useState<google.maps.Map>();
+  const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
+    lat: 0,
+    lng: 0,
+  });
 
+  React.useEffect(() => {
+    if (ref.current && !map) {
+      setMap(new window.google.maps.Map(ref.current, {}));
+    }
+  }, [ref, map]);
+
+  const onClick = (e: google.maps.MapMouseEvent) => {
+    // avoid directly mutating state
+    setClicks([...clicks, e.latLng!]);
+  };
+
+  const onIdle = (m: google.maps.Map) => {
+    console.log("onIdle");
+    setZoom(m.getZoom()!);
+    setCenter(m.getCenter()!.toJSON());
+  };
   React.useEffect(() => {
     if (!marker) {
       setMarker(new google.maps.Marker());
@@ -64,17 +53,48 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
     }
   }, [marker, options]);
 
+  React.useEffect(() => {
+    if (map) {
+      ["click", "idle"].forEach((eventName) =>
+        google.maps.event.clearListeners(map, eventName)
+      );
+
+      if (onClick) {
+        map.addListener("click", onClick);
+      }
+
+      if (onIdle) {
+        map.addListener("idle", () => onIdle(map));
+      }
+    }
+  }, [map, onClick, onIdle]);
+  
+  // because React does not do deep comparisons, a custom hook is used
+  // see discussion in https://github.com/googlemaps/js-samples/issues/946
+  useDeepCompareEffectForMaps(() => {
+    if (map) {
+      map.setOptions(options);
+    }
+  }, [map, options]);
+
   return (
     <>
-      {/* <div ref={ref} /> */}
+      <div ref={ref} style={style} />
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           // set the map prop on the child component
-          // return React.cloneElement(child, { Map });
+          return React.cloneElement(child,  map );
         }
       })}
     </>
-  );};
+  );
+
+}
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+
 root.render(
   <React.StrictMode>
 
@@ -91,15 +111,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-function useDeepCompareEffectForMaps(arg0: () => void, arg1: any[]) {
-  throw new Error('Function not implemented.');
-}
 
-function onIdle(map: google.maps.Map) {
-  throw new Error('Function not implemented.');
-}
-
-function children(children: any, arg1: (child: any) => React.DetailedReactHTMLElement<React.HTMLAttributes<HTMLElement>, HTMLElement> | undefined) {
-  throw new Error('Function not implemented.');
-}
 

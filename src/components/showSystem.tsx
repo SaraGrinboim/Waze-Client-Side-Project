@@ -128,7 +128,8 @@ const ShowSystem = () => {
         <>
             {
                 system &&
-                <Card sx={{ maxWidth: 345 }} className="card">
+                // className="card"
+                <Card sx={{ maxWidth: 345 }} >
                     <CardContent>
                         <form className='auth-inner'>
                             <Typography variant="h3">The system</Typography>
