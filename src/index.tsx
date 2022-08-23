@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './provider/AuthProvider';
 import { BrowserRouter } from 'react-router-dom';
+import { StyledEngineProvider } from '@mui/material';
 
 // export const ref = React.useRef<HTMLDivElement>(null);
 // const [map, setMap] = React.useState<google.maps.Map>();
@@ -74,13 +75,16 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
         }
       })}
     </>
-  );};
+  );
+};
 root.render(
   <React.StrictMode>
 
     <AuthProvider>
       <BrowserRouter>
-        <App />
+        <StyledEngineProvider injectFirst>
+          <App />
+        </StyledEngineProvider>
       </BrowserRouter>
     </AuthProvider>
 
