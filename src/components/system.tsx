@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import * as React from 'react';
 import CardMedia from '@mui/material/CardMedia';
 import '../styles/system.css';
-import AutoComplete from './autoComplete'
+// import AutoComplete from './autoComplete'
 
 export default function Systems() {
 
@@ -38,7 +38,7 @@ export default function Systems() {
 
     return (
         <div className="card-systems">
-            <AutoComplete />
+            {/* <AutoComplete /> */}
             <div className="card-systems-container">
                 {systems?.map((s: System) => (
                     <Card sx={{ maxWidth: 345, backgroundImage: `${s.logoUrl}` }} className="card">
