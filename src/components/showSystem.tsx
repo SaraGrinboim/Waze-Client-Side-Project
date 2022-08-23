@@ -12,6 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import swal from 'sweetalert';
 import { System } from '../models/system.model';
+import '../styles/system.css';
 
 
 
@@ -42,12 +43,12 @@ const ShowSystem = () => {
                 console.log(s);
                 setSystem(s);
             })
-            else{
-                getSystemsByUrlName(String(urlName)).then((s) => {
-                    console.log(s);
-                    setSystem(s);
-                })
-            }
+        else {
+            getSystemsByUrlName(String(urlName)).then((s) => {
+                console.log(s);
+                setSystem(s);
+            })
+        }
 
         if (!system) {
             console.log('no system found');
@@ -76,7 +77,7 @@ const ShowSystem = () => {
                     } catch (error) {
                         console.error(error);
                     }
-    
+
                 } else {
                     swal("Your system is safe!");
                 }
@@ -88,8 +89,8 @@ const ShowSystem = () => {
         // navigate('/systems');
     };
 
-   
-    
+
+
 
 
     const topic: any = useRef();
@@ -145,7 +146,7 @@ const ShowSystem = () => {
         <>
             {
                 system &&
-                <Card>
+                <Card sx={{ maxWidth: 345 }} className="card">
                     <CardContent>
                         <form className='auth-inner'>
                             <Typography variant="h3">The system</Typography>
@@ -171,9 +172,6 @@ const ShowSystem = () => {
                             <div className="mb-3">
                                 <Typography variant="h5">phone number:   {system.phone}</Typography>
                             </div>
-                            <div className="mb-3">
-                                <Typography variant="h5">logo url:   {system.logoUrl}</Typography>
-                            </div>
                             <div className="d-grid">
                                 <Button onClick={Delete} startIcon={<DeleteIcon />}></Button>
                                 <Button onClick={() => setEdit(true)} startIcon={<ModeEditOutlineIcon />}></Button>
@@ -185,7 +183,7 @@ const ShowSystem = () => {
 
             {
                 edit &&
-                <form className='auth-inner' onSubmit={Edit}>
+                <form className='edit' onSubmit={Edit}>
                     <h3>change this system</h3>
                     <div className="mb-3">
                         <TextField required type="string" id="outlined-basic" label="enter topic" variant="outlined" inputRef={topic}></TextField>

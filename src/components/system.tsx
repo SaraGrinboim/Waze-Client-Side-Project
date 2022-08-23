@@ -39,13 +39,12 @@ export default function Systems() {
         <div className="card-systems">
             <div className="card-systems-container">
                 {systems?.map((s: System) => (
-                    <Card sx={{ maxWidth: 345 }} className="card">
+                    <Card sx={{ maxWidth: 345, backgroundImage: `${s.logoUrl}`}} className="card">
                         {/* <CardMedia
                             component="img"
                             height="140"
                         // srcSet={s.logoUrl}
                         />*/}
-
                         <img
                             src={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format`}
                             srcSet={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
