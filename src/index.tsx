@@ -79,15 +79,11 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
 };
 root.render(
   <React.StrictMode>
-
     <AuthProvider>
       <BrowserRouter>
-        <StyledEngineProvider injectFirst>
           <App />
-        </StyledEngineProvider>
       </BrowserRouter>
     </AuthProvider>
-
   </React.StrictMode>
 );
 
