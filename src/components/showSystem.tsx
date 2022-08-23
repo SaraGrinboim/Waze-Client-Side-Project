@@ -14,13 +14,7 @@ import swal from 'sweetalert';
 import { System } from '../models/system.model';
 import '../styles/system.css';
 
-
-
 const ShowSystem = () => {
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const { urlName } = useParams();
-
 
     let s: System = {
         topic: "",
@@ -32,11 +26,10 @@ const ShowSystem = () => {
         urlName: "",
         logoUrl: "",
     };
+    const navigate = useNavigate();
+    const { urlName, id } = useParams();
     const [system, setSystem] = useState(s);
     const [edit, setEdit] = useState(false);
-
-
-    // const [name, setName] = useState(system?.name);
     useEffect(() => {
         if (id)
             getSystemById(String(id)).then((s) => {
@@ -51,8 +44,8 @@ const ShowSystem = () => {
         }
 
         if (!system) {
-            console.log('no system found');
-            navigate('/systems');  // דוגמא לניווט ע"י קוד
+            alert('no system found');
+            navigate('/systems');
         }
     }, []);
 
@@ -77,33 +70,23 @@ const ShowSystem = () => {
                     } catch (error) {
                         console.error(error);
                     }
-
                 } else {
                     swal("Your system is safe!");
                 }
             });
         navigate('/systems');
 
-        // let result = await deleteSystem(String(system._id));
-        // console.log(result);
-        // navigate('/systems');
+
     };
-
-
-
-
 
     const topic: any = useRef();
     const objectName: any = useRef();
     const description: any = useRef();
     const email: any = useRef();
     const phone: any = useRef();
-    const ownerId: any = useRef();
     const URLName: any = useRef();
     const LogoUrl: any = useRef();
-
     const Edit = async () => {
-
         const newSystem: System = {
             "topic": topic.current?.value,
             "objectName": objectName.current?.value,
@@ -115,6 +98,7 @@ const ShowSystem = () => {
             "logoUrl": LogoUrl.current?.value
         }
         console.log("newSystem: " + newSystem);
+
         swal({
             title: "Are you sure?",
             text: "Once edited, you will not be able to recover this system file!",
@@ -122,7 +106,6 @@ const ShowSystem = () => {
             dangerMode: true,
         })
             .then(async function name(willDelete: any) {
-
                 if (willDelete) {
                     try {
                         console.log(newSystem);
@@ -137,11 +120,10 @@ const ShowSystem = () => {
                 } else {
                     swal("Your system is safe!");
                 }
-
             });
         navigate('/systems');
-    };
 
+    };
     return (
         <>
             {
@@ -155,7 +137,6 @@ const ShowSystem = () => {
                             </div>
                             <div className="mb-3">
                                 <Typography variant="h5">objectName:   {system.objectName}</Typography>
-
                             </div>
                             <div className="mb-3">
                                 <Typography variant="h5">description:   {system.description}</Typography>
@@ -180,7 +161,6 @@ const ShowSystem = () => {
                     </CardContent>
                 </Card>
             }
-
             {
                 edit &&
                 <form className='edit' onSubmit={Edit}>
@@ -213,7 +193,6 @@ const ShowSystem = () => {
             }
         </>
     );
-
-
 }
+// }
 export default ShowSystem;
