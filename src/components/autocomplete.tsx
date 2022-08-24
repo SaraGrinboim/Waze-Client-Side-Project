@@ -49,13 +49,3 @@ const AutoComplete = () => {
     )
 }
 export default AutoComplete;
-Collapse
-
-
-
-
-
-
-
-
-
