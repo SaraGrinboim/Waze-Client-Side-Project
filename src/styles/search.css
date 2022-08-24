@@ -1,81 +1,81 @@
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   
 }
 
 
 #map-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  font-family: "Roboto", sans-serif;
-  box-sizing: border-box;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  font-family: "Roboto", sans-serif !important;
+  box-sizing: border-box !important;
 }
 
 #map-container a {
-  text-decoration: none;
-  color: #1967d2;
+  text-decoration: none !important;
+  color: #1967d2 !important;
 }
 
 #map-container button {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-size: inherit;
-  cursor: pointer;
+  background: none !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  font-size: inherit !important;
+  cursor: pointer !important;
 }
 
 #gmp-map {
-  position: absolute;
-  left: 22em;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  position: absolute !important;
+  left: 22em !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
 }
 
 #locations-panel {
-  position: absolute;
-  left: 0;
-  width: 22em;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  background: white;
-  padding: 0.5em;
-  box-sizing: border-box;
+  position: absolute !important;
+  left: 0 !important;
+  width: 22em !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  overflow-y: auto !important;
+  background: white !important;
+  padding: 0.5em !important;
+  box-sizing: border-box !important;
 }
 
 @media only screen and (max-width: 876px) {
   #gmp-map {
-    left: 0;
-    bottom: 50%;
+    left: 0 !important;
+    bottom: 50% !important;
   }
 
   #locations-panel {
-    top: 50%;
-    right: 0;
-    width: unset;
+    top: 50% !important;
+    right: 0 !important;
+    width: unset !important;
   }
 }
 
 #locations-panel-list > header {
-  padding: 1.4em 1.4em 0 1.4em;
+  padding: 1.4em 1.4em 0 1.4em !important;
 }
 
 #locations-panel-list h1.search-title {
-  font-size: 1em;
-  font-weight: 500;
-  margin: 0;
+  font-size: 1em !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
 }
 
 #locations-panel-list h1.search-title > img {
-  vertical-align: bottom;
-  margin-top: -1em;
+  vertical-align: bottom !important;
+  margin-top: -1em !important;
   size:23px !important;
 }
 
@@ -120,71 +120,71 @@ body {
 }
 
 #locations-panel-list .section-name {
-  font-weight: 500;
-  font-size: 0.9em;
-  margin: 1.8em 0 1em 1.5em;
+  font-weight: 500 !important;
+  font-size: 0.9em !important;
+  margin: 1.8em 0 1em 1.5em !important;
 }
 
 #locations-panel-list .location-result {
-  position: relative;
-  padding: 0.8em 3.5em 0.8em 1.4em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  cursor: pointer;
+  position: relative !important;
+  padding: 0.8em 3.5em 0.8em 1.4em !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+  cursor: pointer !important;
 }
 
 #locations-panel-list .location-result:first-of-type {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
 #locations-panel-list .location-result:last-of-type {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 #locations-panel-list .location-result.selected {
-  outline: 2px solid #4285f4;
+  outline: 2px solid #4285f4 !important;
 }
 
 #locations-panel-list button.select-location {
-  margin-bottom: 0.6em;
-  text-align: left;
+  margin-bottom: 0.6em !important;
+  text-align: left !important;
 }
 
 #locations-panel-list .location-result h2.name {
-  font-size: 1em;
-  font-weight: 500;
-  margin: 0;
+  font-size: 1em !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
 }
 
 #locations-panel-list .location-result .address {
-  font-size: 0.9em;
-  margin-bottom: 0.5em;
+  font-size: 0.9em !important;
+  margin-bottom: 0.5em !important;
 }
 
 #locations-panel-list .directions-button {
-  position: absolute;
-  right: 1.2em;
-  top: 2.3em;
+  position: absolute !important;
+  right: 1.2em !important;
+  top: 2.3em !important;
 }
 
 #locations-panel-list .directions-button-background:hover {
-  fill: rgba(116,120,127,0.1);
+  fill: rgba(116,120,127,0.1) !important;
 }
 
 #locations-panel-list .directions-button-background {
-  fill: rgba(255,255,255,0.01);
+  fill: rgba(255,255,255,0.01) !important;
 }
 
 #locations-panel-list .location-result .distance {
-  position: absolute;
-  top: 0.9em;
-  right: 0;
-  text-align: center;
-  font-size: 0.9em;
-  width: 5em;
+  position: absolute !important;
+  top: 0.9em !important;
+  right: 0 !important;
+  text-align: center !important;
+  font-size: 0.9em !important;
+  width: 5em !important;
 }
 
 #location-results-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }

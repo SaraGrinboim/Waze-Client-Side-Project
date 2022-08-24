@@ -1,6 +1,6 @@
 
-import '../styles/search.css'
-import AutoComplete from './autoComplete'
+import '../styles/search.css';
+import AutoComplete from './AutoComplete';
 const SearchPage = () => {
 
     return (

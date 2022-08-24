@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 // import google from 'google';
+import '../styles/search.css';
+
 
 
 const AutoComplete = () => {
