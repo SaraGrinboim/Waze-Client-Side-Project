@@ -12,13 +12,9 @@ import Box from '@mui/material/Box';
 import * as React from 'react';
 import CardMedia from '@mui/material/CardMedia';
 import '../styles/system.css';
-
 export default function Systems() {
-
     const navigate = useNavigate();
-
     const [systems, setSystems] = useState([]);
-
     useEffect(() => {
         async function getAllSystems() {
             try {
@@ -32,9 +28,7 @@ export default function Systems() {
             }
         }
         getAllSystems();
-
     }, [])
-
     return (
         <div className="card-systems">
             <div className="card-systems-container">
@@ -80,52 +74,6 @@ export default function Systems() {
                     () => navigate('/add')
                 }
             >add system</Button>
-
         </div>
     )
 }
-
-        //     <Card sx={{ minWidth: 275, alignItems: 'center', }}>
-
-        //         <CardContent>
-        //             <div key={String(s._id)}>
-        //                 {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom> */}
-        //                     {s.topic}
-        //                 {/* </Typography> */}
-        //                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        //                     phone:{s.phone}
-        //                     <br />
-        //                     email:{s.email}
-        //                 </Typography>
-        //                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-        //                     <Button variant="text"><Link to={`${s._id}`}> enter to this system </Link></Button>{" "}<br />
-        //                 </Typography>
-        //                 <Box
-        //                     sx={{
-        //                         display: 'flex',
-        //                         flexDirection: 'column',
-        //                         alignItems: 'center',
-        //                         '& > *': {
-        //                             m: 1,
-        //                         },
-        //                     }}
-        //                 >
-        //                     <CardActions >
-        //                         <Button variant="outlined" onClick=
-        //                             {
-        //                                 () => navigate(`/systemDetails/?urlName=` + s.urlName)
-        //                             }
-        //                         >show system</Button>
-        //                     </CardActions>
-        //                 </Box>
-        //             </div>
-        //         </CardContent>
-        //     </Card>
-        // ))}
-        // <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-        //     <Link to={`/add`} style={{ listStyle: "none" }}> to add system</Link>{" "}<br />
-        // </Typography>
-//     </>
-// );
-
-// }
