@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 // import google from 'google';
-
-
+import '../styles/search.css';
 const AutoComplete = () => {
     const center = { lat: 50.064192, lng: -130.605469 };
     // Create a bounding box with sides ~10km away from the center point
@@ -20,22 +19,14 @@ const AutoComplete = () => {
             strictBounds: false,
             types: ["establishment"],
         };
-
         const autocomplete = new window.google.maps.places.Autocomplete(input, options);
         autocomplete.setFields(["place_id", "geometry", "name"]);
     },[]);
-
-
-
     // window.google.maps.event.addDomListener(window, 'load', initialize);
-
-
     return (
         // <div>
         //     <input id="searchTextField" type="text" size={50} placeholder="Anything you want!" />
         // </div>
-
-
 <div>
         <header>
             <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -56,10 +47,5 @@ const AutoComplete = () => {
         </header>
         </div>
     )
-
 }
 export default AutoComplete;
-
-
-
-
