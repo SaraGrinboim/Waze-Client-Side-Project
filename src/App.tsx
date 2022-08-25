@@ -20,6 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import Map from './components/map';
 function App() {
 
   const [auth, setAuth] = React.useState(true);
@@ -104,6 +105,8 @@ function App() {
           <Route path="systems/:id" element={<ShowSystem />} />
           {/* <Route path="systemDetails/:urlName" element={<ShowSystem/>}/> */}
           <Route path=":urlName" element={<ShowSystem />} />
+          
+          <Route path="map" element={<Map/>} />
 
           <Route path="*" element={<h1> A mistake </h1>} />
         </Routes>
