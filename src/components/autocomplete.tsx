@@ -55,7 +55,8 @@ const AutoComplete = ({ setOffice }: placesProps) => {
                     Find a location near you
                 </h1>
                 <div className="search-input">
-                    <input id="searchTextField" placeholder="Enter your address or zip code" onSelect={handleSelect} onChange = {(e)=>{setValue(e.target.value);}}/>
+                {/* onSelect={handleSelect} */}
+                    <input id="searchTextField" placeholder="Enter your address or zip code"  onChange = {(e)=>{setValue(e.target.value);}}/>
                     <div id="search-overlay-search" className="search-input-overlay search">
                         <button id="location-search-button">
                             <img className="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/search/v11/24px.svg" alt="Search" />
