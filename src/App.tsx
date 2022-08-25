@@ -5,6 +5,7 @@ import Users from './components/users';
 import CreateSystem from "./components/createSystem";
 import ShowSystem from "./components/showSystem";
 import Systems from './components/system';
+import SearchPage from './components/searchPage';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -93,7 +94,7 @@ function App() {
           {/* <Route path="" element={<Login />} /> */}
           <Route path="add" element={<CreateSystem />} />
 
-
+          <Route path="searchPage" element={<SearchPage />} />
           <Route path="user" element={<Users />} />
           {/* <Route  path="systems" element={<Systems />} >
             <Route  path=":id" element={<ShowSystem />} />
@@ -102,6 +103,7 @@ function App() {
           <Route path="systems/:id" element={<ShowSystem />} />
           {/* <Route path="systemDetails/:urlName" element={<ShowSystem/>}/> */}
           <Route path=":urlName" element={<ShowSystem />} />
+          
           <Route path="*" element={<h1> A mistake </h1>} />
         </Routes>
       </>

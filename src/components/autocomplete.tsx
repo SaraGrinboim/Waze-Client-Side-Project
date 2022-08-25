@@ -1,35 +1,65 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import React, { useEffect } from 'react';
+// import google from 'google';
 
-export default function ComboBox() {
-  return (
-    <Autocomplete
-      disablePortal
-      id="combo-box-demo"
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="marker" />}
-    />
-  );
+
+const AutoComplete = () => {
+    const center = { lat: 50.064192, lng: -130.605469 };
+    // Create a bounding box with sides ~10km away from the center point
+    const defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
+    useEffect(() => {
+        const input = document.getElementById("searchTextField") as HTMLInputElement;
+        const options = {
+            bounds: defaultBounds,
+            componentRestrictions: { country: "us" },
+            fields: ["address_components", "geometry", "icon", "name"],
+            strictBounds: false,
+            types: ["establishment"],
+        };
+
+        const autocomplete = new window.google.maps.places.Autocomplete(input, options);
+        autocomplete.setFields(["place_id", "geometry", "name"]);
+    },[]);
+
+
+
+    // window.google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    return (
+        // <div>
+        //     <input id="searchTextField" type="text" size={50} placeholder="Anything you want!" />
+        // </div>
+
+
+<div>
+        <header>
+            <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script>
+            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"></link>
+            <h1 className="search-title">
+                <img src="https://fonts.gstatic.com/s/i/googlematerialicons/place/v15/24px.svg" />
+                Find a location near you
+            </h1>
+            <div className="search-input">
+                <input id="searchTextField" placeholder="Enter your address or zip code" />
+                <div id="search-overlay-search" className="search-input-overlay search">
+                    <button id="location-search-button">
+                        <img className="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/search/v11/24px.svg" alt="Search" />
+                    </button>
+                </div>
+            </div>
+        </header>
+        </div>
+    )
+
 }
-//לכאן צריך להביא מיקומים שלנו
-const top100Films = [
-  { label: 'The Prestige', year: 2006 },
-  { label: 'The Lion King', year: 1994 },
-  { label: 'Apocalypse Now', year: 1979 },
-  { label: 'Alien', year: 1979 },
-  { label: 'Sunset Boulevard', year: 1950 },
-  { label: 'The Great Dictator', year: 1940 },
-  { label: 'Cinema Paradiso', year: 1988 },
-  { label: 'The Lives of Others', year: 2006 },
-  { label: 'Grave of the Fireflies', year: 1988 },
-  { label: 'Paths of Glory', year: 1957 },
-  { label: 'Django Unchained', year: 2012 },
-  { label: 'The Shining', year: 1980 },
-  { label: 'WALL·E', year: 2008 },
-  { label: 'American Beauty', year: 1999 },
-  { label: 'The Dark Knight Rises', year: 2012 },
-  { label: 'Princess Mononoke', year: 1997 },
+export default AutoComplete;
 
-];
+
+
+
