@@ -5,7 +5,6 @@ body {
   padding: 0 !important;
   
 }
-<<<<<<< HEAD
 
 .container{
   display: flex !important;
@@ -22,31 +21,11 @@ body {
 }
 
 .mapContainer {
-=======
-​
-.container{
-  display: flex !important;
-  height: 100% !important;
-}
-​
-.map-container{
-  width: 100% !important;
-  height: 100% !important;
-}
-​
-.map{
-  width: 80% !important;
-  height: 100%;
-}
-​
-#map-container {
->>>>>>> 65514dbea9938d44e047ff402558f7f77a66af5b
   width: 100% !important;
   height: 100% !important;
   position: relative !important;
   font-family: "Roboto", sans-serif !important;
   box-sizing: border-box !important;
-<<<<<<< HEAD
 }
 
 .mapContainer a {
@@ -55,16 +34,6 @@ body {
 }
 
 .mapContainer button {
-=======
-}
-​
-#map-container a {
-  text-decoration: none !important;
-  color: #1967d2 !important;
-}
-​
-#map-container button {
->>>>>>> 65514dbea9938d44e047ff402558f7f77a66af5b
   background: none !important;
   color: inherit !important;
   border: none !important;
@@ -73,7 +42,7 @@ body {
   font-size: inherit !important;
   cursor: pointer !important;
 }
-​
+
 #gmp-map {
   position: absolute !important;
   left: 22em !important;
@@ -81,7 +50,7 @@ body {
   right: 0 !important;
   bottom: 0 !important;
 }
-​
+
 #locations-panel {
   position: absolute !important;
   left: 0 !important;
@@ -93,42 +62,42 @@ body {
   padding: 0.5em !important;
   box-sizing: border-box !important;
 }
-​
+
 @media only screen and (max-width: 876px) {
   #gmp-map {
     left: 0 !important;
     bottom: 50% !important;
   }
-​
+
   #locations-panel {
     top: 50% !important;
     right: 0 !important;
     width: unset !important;
   }
 }
-​
+
 #locations-panel-list > header {
   padding: 1.4em 1.4em 0 1.4em !important;
 }
-​
+
 #locations-panel-list h1.search-title {
   font-size: 1em !important;
   font-weight: 500 !important;
   margin: 0 !important;
 }
-​
+
 #locations-panel-list h1.search-title > img {
   vertical-align: bottom !important;
   margin-top: -1em !important;
   size:23px !important;
 }
-​
+
 #locations-panel-list .search-input {
   width: 100% !important;
   margin-top: 0.8em !important;
   position: relative !important;
 }
-​
+
 #locations-panel-list .search-input input {
   width: 100% !important;
   border: 1px solid rgba(0, 0, 0, 0.2) !important;
@@ -138,18 +107,18 @@ body {
   padding: 0 2.5em 0 1em !important;
   font-size: 1em !important;
 }
-​
+
 #locations-panel-list .search-input-overlay {
   position: absolute !important;
 }
-​
+
 #locations-panel-list .search-input-overlay.search {
   right: 2px !important;
   top: 2px !important;
   bottom: 2px !important;
   width: 2.4em !important;
 }
-​
+
 #locations-panel-list .search-input-overlay.search button {
   width: 100% !important;
   height: 100% !important;
@@ -157,67 +126,67 @@ body {
   color: black !important;
   background: transparent !important;
 }
-​
+
 #locations-panel-list .search-input-overlay.search .icon {
   margin-top: 0.05em !important;
   vertical-align: top !important;
 }
-​
+
 #locations-panel-list .section-name {
   font-weight: 500 !important;
   font-size: 0.9em !important;
   margin: 1.8em 0 1em 1.5em !important;
 }
-​
+
 #locations-panel-list .location-result {
   position: relative !important;
   padding: 0.8em 3.5em 0.8em 1.4em !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
   cursor: pointer !important;
 }
-​
+
 #locations-panel-list .location-result:first-of-type {
   border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
-​
+
 #locations-panel-list .location-result:last-of-type {
   border-bottom: none !important;
 }
-​
+
 #locations-panel-list .location-result.selected {
   outline: 2px solid #4285f4 !important;
 }
-​
+
 #locations-panel-list button.select-location {
   margin-bottom: 0.6em !important;
   text-align: left !important;
 }
-​
+
 #locations-panel-list .location-result h2.name {
   font-size: 1em !important;
   font-weight: 500 !important;
   margin: 0 !important;
 }
-​
+
 #locations-panel-list .location-result .address {
   font-size: 0.9em !important;
   margin-bottom: 0.5em !important;
 }
-​
+
 #locations-panel-list .directions-button {
   position: absolute !important;
   right: 1.2em !important;
   top: 2.3em !important;
 }
-​
+
 #locations-panel-list .directions-button-background:hover {
   fill: rgba(116,120,127,0.1) !important;
 }
-​
+
 #locations-panel-list .directions-button-background {
   fill: rgba(255,255,255,0.01) !important;
 }
-​
+
 #locations-panel-list .location-result .distance {
   position: absolute !important;
   top: 0.9em !important;
@@ -226,7 +195,7 @@ body {
   font-size: 0.9em !important;
   width: 5em !important;
 }
-​
+
 #location-results-list {
   list-style-type: none !important;
   margin: 0 !important;
