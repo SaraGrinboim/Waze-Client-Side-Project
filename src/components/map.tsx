@@ -11,8 +11,8 @@
 //       <Marker position={center}></Marker>
 //     </GoogleMap>);
 
-import { GoogleMap } from "@react-google-maps/api";
-import { useCallback, useMemo, useRef, useState} from "react";
+import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
+import { useCallback, useMemo, useRef, useState } from "react";
 import AutoComplete from "../components/autoComplete";
 import '../styles/search.css';
 // }
@@ -26,7 +26,7 @@ export default function Map() {
   const mapRef = useRef<GoogleMap>()
   const center = useMemo<LatLngLiteral>(() => ({ lat: 43, lng: -80 }), []);
   const options = useMemo<MapOptions>(() => ({
-    mapId:"enter your map id",
+    mapId: "AIzaSyBL9SengOBv22kYKJDCPRUSvgt_orH7q0M",
     disableDefaultUi: true,
     clickableIcons: true,
   }), []);
@@ -35,10 +35,11 @@ export default function Map() {
 
   return <div className="container">
     <div className="controls">
-    <AutoComplete setOffice = {(posinion:any)=>{
-        setOffice(posinion);
-        mapRef.current?.panTo(posinion);
-    }}/>
+      <AutoComplete 
+      setOffice={(position: any) => {
+        setOffice(position);
+        mapRef.current?.panTo(position);
+      }} />
     </div>
     <div className="map">
       <GoogleMap
@@ -47,7 +48,21 @@ export default function Map() {
         mapContainerClassName="mapContainer"
         options={options}
         onLoad={onLoad}
-      ></GoogleMap>
+      >
+        {office && 
+        <>
+        // icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+        (
+        <Marker position={office} />
+        <Circle center={office} radius={15000} options = { closeOptions }/>
+        <Circle center={office} radius={30000} options = { middleOptions }/>
+        <Circle center={office} radius={45000} options = { farOptions }/>
+
+        )
+        </>
+        }
+
+      </GoogleMap>
     </div>
   </div>
 }

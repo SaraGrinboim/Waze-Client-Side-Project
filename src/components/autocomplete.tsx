@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
-
+import { ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 // import google from 'google';
 import '../styles/search.css';
 type placesProps = {
@@ -39,8 +39,7 @@ const AutoComplete = ({ setOffice }: placesProps) => {
         const {lat, lng} = await getLatLng(result[0]);
         setOffice({lat, lng});
     }
-
-    // window.google.maps.event.addDomListener(window, 'load', initialize);
+     // window.google.maps.event.addDomListener(window, 'load', initialize);
     return (
         // <div>
         //     <input id="searchTextField" type="text" size={50} placeholder="Anything you want!" />
@@ -55,14 +54,18 @@ const AutoComplete = ({ setOffice }: placesProps) => {
                     Find a location near you
                 </h1>
                 <div className="search-input">
-                    {/* צריך להיות בעקרון בתוך האינפוט רק שהוא צועק לי שם על זה */}
-                {/* onSelect={handleSelect} */}
                     <input id="searchTextField" placeholder="Enter your address or zip code"  onChange = {(e)=>{setValue(e.target.value);}}/>
                     <div id="search-overlay-search" className="search-input-overlay search">
-                        <button id="location-search-button">
+                        <button id="location-search-button" type='submit' onSubmit={ ()=> handleSelect(value) }>
                             <img className="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/search/v11/24px.svg" alt="Search" />
                         </button>
                     </div>
+                    <ComboboxPopover>
+                        <ComboboxList>
+                            {status==="OK" && data.map(({place_id, description})=><ComboboxOption 
+                            key = {place_id} value={description}/>)}
+                        </ComboboxList>
+                    </ComboboxPopover>
                 </div>
             </header>
         </div>

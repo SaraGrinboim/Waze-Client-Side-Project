@@ -3,7 +3,6 @@ import '../styles/search.css';
 import { useLoadScript } from "@react-google-maps/api";
 import Map from '../components/map';
 
-
 const SearchPage = () => {
     const { isLoaded } = useLoadScript({
     googleMapsApiKey:"AIzaSyBL9SengOBv22kYKJDCPRUSvgt_orH7q0M",
@@ -18,3 +17,5 @@ const SearchPage = () => {
     )
 }
 export default SearchPage;
+
+
