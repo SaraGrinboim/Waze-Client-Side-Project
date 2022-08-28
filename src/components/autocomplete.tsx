@@ -6,6 +6,10 @@ import '../styles/search.css';
 type placesProps = {
     setOffice: (position: google.maps.LatLngLiteral) => void;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4be5888da54e21d14d4689fd916a441843232dfa
 const AutoComplete = ({ setOffice }: placesProps) => {
     const {ready, value, setValue, suggestions:{status, data}, clearSuggestions} = usePlacesAutocomplete();
     const center = { lat: 50.064192, lng: -130.605469 };
@@ -16,6 +20,7 @@ const AutoComplete = ({ setOffice }: placesProps) => {
         east: center.lng + 0.1,
         west: center.lng - 0.1,
     };
+
     useEffect(() => {
         const input = document.getElementById("searchTextField") as HTMLInputElement;
         const options = {
@@ -28,6 +33,10 @@ const AutoComplete = ({ setOffice }: placesProps) => {
         const autocomplete = new window.google.maps.places.Autocomplete(input, options);
         autocomplete.setFields(["place_id", "geometry", "name"]);
     }, []);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4be5888da54e21d14d4689fd916a441843232dfa
     const handleSelect = async (val: string) => {
         //not working
         setValue(val, false);
@@ -59,12 +68,17 @@ const AutoComplete = ({ setOffice }: placesProps) => {
                     </div>
                     <ComboboxPopover>
                         <ComboboxList>
+<<<<<<< HEAD
                             {status==="OK" && data.map(({place_id, description})=><ComboboxOption
+=======
+                            {status==="OK" && data.map(({place_id, description})=><ComboboxOption 
+>>>>>>> 4be5888da54e21d14d4689fd916a441843232dfa
                             key = {place_id} value={description}/>)}
                         </ComboboxList>
                     </ComboboxPopover>
                 </div>
             </header>
+<<<<<<< HEAD
         </div>
     )
 }
@@ -135,6 +149,8 @@ const AutoComplete = ({ setOffice }: placesProps) => {
                     </ComboboxPopover>
                 </div>
             </header>
+=======
+>>>>>>> 4be5888da54e21d14d4689fd916a441843232dfa
         </div>
     )
 }
