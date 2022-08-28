@@ -11,7 +11,7 @@
 //       <Marker position={center}></Marker>
 //     </GoogleMap>);
 
-import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
+import { Circle, GoogleMap, Marker, MarkerClusterer } from "@react-google-maps/api";
 import { useCallback, useMemo, useRef, useState } from "react";
 import AutoComplete from "../components/autoComplete";
 import '../styles/search.css';
@@ -32,7 +32,7 @@ export default function Map() {
   }), []);
 
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
-
+  // const houses = useMemo(() => generateHouses(center),[center])
   return <div className="container">
     <div className="controls">
       <AutoComplete 
@@ -49,18 +49,26 @@ export default function Map() {
         options={options}
         onLoad={onLoad}
       >
-        {office && 
+        {office &&  (
         <>
         // icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-        (
+       
         <Marker position={office} />
+
+        {/* <MarkerClusterer> */}
+          {/* {(clusterer)=>{
+            houses.map((house)=>(
+              <Marker key={house.lat} position={house}/>
+            )
+          }} */}
+        {/* </MarkerClusterer> */}
         <Circle center={office} radius={15000} options = { closeOptions }/>
         <Circle center={office} radius={30000} options = { middleOptions }/>
         <Circle center={office} radius={45000} options = { farOptions }/>
 
-        )
+        
         </>
-        }
+        )}
 
       </GoogleMap>
     </div>
