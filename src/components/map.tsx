@@ -11,28 +11,58 @@
 //       <Marker position={center}></Marker>
 //     </GoogleMap>);
 
-import { Circle, GoogleMap, Marker, MarkerClusterer } from "@react-google-maps/api";
+import { Circle, GoogleMap, Marker, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
 import { useCallback, useMemo, useRef, useState } from "react";
-import AutoComplete from "../components/autoComplete";
 import '../styles/search.css';
+import AutoComplete from "./autoComplete";
 // }
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectiosResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
-
 export default function Map() {
   const [office, setOffice] = useState<LatLngLiteral>();
+  const [direction, setDirection] = useState<DirectiosResult>();
   const mapRef = useRef<GoogleMap>()
   const center = useMemo<LatLngLiteral>(() => ({ lat: 43, lng: -80 }), []);
+  const JerusalemPosition = useMemo<LatLngLiteral>(() => ({ lat: 31.771959, lng: 35.217018 }), []);
   const options = useMemo<MapOptions>(() => ({
-    mapId: "AIzaSyBL9SengOBv22kYKJDCPRUSvgt_orH7q0M",
+    // mapId: "AIzaSyBL9SengOBv22kYKJDCPRUSvgt_orH7q0M",
     disableDefaultUi: true,
     clickableIcons: true,
   }), []);
 
+  // const { isLoaded } = useLoadScript({
+  //   googleMapsApiKey: "AIzaSyDMuHvUyS3JFJ85UXef9xNKex631FzsSU0",
+  //   libraries: ["places"],
+  // }
+  // )
+  const optionsMarker = {
+    imagePath:
+      'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+  }
+
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
-  // const houses = useMemo(() => generateHouses(center),[center])
+
+  const houses = useMemo(() => generateHouses(JerusalemPosition),[center]);
+
+  const fetchDirections = (_houses: LatLngLiteral) => {
+    if (!office) return;
+    const service = new google.maps.DirectionsService();
+    service.route(
+      {
+        origin: _houses,
+        destination: office,
+        travelMode: google.maps.TravelMode.DRIVING
+      },
+      (result, status) => {
+        if (status === "OK" && result) {
+          setDirection(result);
+        }
+      }
+    )
+  }
+
   return <div className="container">
     <div className="controls">
       <AutoComplete 
@@ -108,6 +138,15 @@ const farOptions = {
   fillColor: "#FF5252"
 };
 
-// const genersteHouses = (position:LatLngLiteral) => {
-//   const _houses:Array<LatLngLiteral> = [];
-// };
+const generateHouses = (position: LatLngLiteral) => {
+  // alert("generateHouses")
+  const houses: Array<LatLngLiteral> = [];
+  for (let i = 0; i < 5; i++) {
+    const direction = Math.random() < 0.5 ? -2 : 2;
+    houses.push({
+      lat: position.lat * Math.random() / direction,
+      lng: position.lng * Math.random() / direction,
+    });
+  }
+  return houses;
+}
