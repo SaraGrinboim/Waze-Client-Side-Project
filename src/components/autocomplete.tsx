@@ -104,7 +104,7 @@ const AutoComplete = ({ setOffice }: PlaceProps) => {
     }, []);
     const handleSelection = async (val: string) => {
     // const l= document.getElementById("searchTextField").value?document.getElementById("searchTextField").value:"";
-        console.log(val);
+        console.log(val) ;
 
         clearSuggestions();
         const result = await getGeocode({ address: val });
