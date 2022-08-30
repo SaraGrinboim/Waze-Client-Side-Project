@@ -1,15 +1,3 @@
-// import { useMemo } from "react";
-// import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-// export default function Map() {
-//   const center = useMemo(() => ({ lat: 32, lng: 35 }), [])
-//   const { isLoaded } = useLoadScript({
-//     googleMapsApiKey: "AIzaSyBL9SengOBv22kYKJDCPRUSvgt_orH7q0M",
-//   });
-//   if (!isLoaded) return <div>isLoading...</div>
-//   return (
-//     <GoogleMap zoom={10} center={center} mapContainerClassName="mapContainer">
-//       <Marker position={center}></Marker>
-//     </GoogleMap>);
 
 import { Circle, GoogleMap, Marker, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -32,11 +20,7 @@ export default function Map() {
     clickableIcons: true,
   }), []);
 
-  // const { isLoaded } = useLoadScript({
-  //   googleMapsApiKey: "AIzaSyDMuHvUyS3JFJ85UXef9xNKex631FzsSU0",
-  //   libraries: ["places"],
-  // }
-  // )
+
   const optionsMarker = {
     imagePath:
       'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
@@ -81,7 +65,7 @@ export default function Map() {
       >
         {office &&  (
         <>
-        // icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+        
        
         <Marker position={office} />
 
