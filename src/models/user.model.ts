@@ -1,14 +1,14 @@
 
-export type User = {
+export interface User{
     _id?:String,
-    role:Erole,
+    role:eRole,
     firstName:String,
     lastName:String,
     email:String,
     phone:String
 }
 
-export enum Erole{
+export enum eRole{
     manager,
     customer,
     admin

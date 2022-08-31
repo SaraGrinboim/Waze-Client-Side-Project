@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {System } from '../models/system.model';
+import { System } from '../models/system.model';
+import { makeAutoObservable } from "mobx";
 
 export const getSystems = async () => {
 
@@ -64,3 +65,21 @@ export const deleteSystem = async (id: string) => {
     }
 
 }
+
+class Store {
+
+    id: string = "";
+    systems: System[] = [];
+
+    constructor() {
+        makeAutoObservable(this);
+    }
+
+    async getSystems() {
+        this.systems = await getSystems();
+    }
+
+
+}
+const systemStore = new Store();
+export default systemStore;

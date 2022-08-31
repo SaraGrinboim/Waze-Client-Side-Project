@@ -1,46 +1,38 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { getSystems } from '../api/system';
 import { System } from '../models/system.model';
-import { Link } from 'react-router-dom';
+import systemStore from '../api/system';
 import { useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import * as React from 'react';
-import CardMedia from '@mui/material/CardMedia';
 import '../styles/system.css';
-// import AutoComplete from './autoComplete'
 
-export default function Systems() {
+const Systems = () => {
 
     const navigate = useNavigate();
 
-    const [systems, setSystems] = useState([]);
-
     useEffect(() => {
-        async function getAllSystems() {
-            try {
-                getSystems()?.then((systems) => {
-                    console.log(systems);
-                    setSystems(systems)
-                })
-            }
-            catch (error) {
-                console.error(error);
-            }
-        }
+
         getAllSystems();
 
     }, [])
 
+    async function getAllSystems() {
+        try {
+            await systemStore.getSystems();
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div className="card-systems">
-            {/* <AutoComplete /> */}
             <div className="card-systems-container">
-                {systems?.map((s: System) => (
+                {systemStore.systems?.map((s: System) => (
                     <Card sx={{ maxWidth: 345, backgroundImage: `${s.logoUrl}` }} className="card">
                         {/* <CardMedia
                             component="img"
@@ -50,11 +42,9 @@ export default function Systems() {
                         <img className='img'
                             src={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format`}
                             srcSet={`${s.logoUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                            // alt={item.title}
-                            loading="lazy"></img>
-                        {/* <Typography gutterBottom variant="h5" component="div">
-                            {s.logoUrl}
-                        </Typography> */}
+                            alt={s.topic}
+                            loading="lazy">
+                        </img>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
                                 {s.topic}
@@ -68,13 +58,9 @@ export default function Systems() {
                                 onClick={() => navigate(`/systems/${s._id}`)}>
                                 show {s.topic} details
                             </Button>
-                            {/* <Button size="small">Learn More</Button> */}
                         </CardActions>
                     </Card>
                 ))}
-                {/* <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-                <Link to={`/add`} style={{ listStyle: "none" }}> to add system</Link>{" "}<br />
-            </Typography> */}
             </div>
             <Button variant="outlined" onClick=
                 {
@@ -85,48 +71,4 @@ export default function Systems() {
         </div>
     )
 }
-
-        //     <Card sx={{ minWidth: 275, alignItems: 'center', }}>
-
-        //         <CardContent>
-        //             <div key={String(s._id)}>
-        //                 {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom> */}
-        //                     {s.topic}
-        //                 {/* </Typography> */}
-        //                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        //                     phone:{s.phone}
-        //                     <br />
-        //                     email:{s.email}
-        //                 </Typography>
-        //                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-        //                     <Button variant="text"><Link to={`${s._id}`}> enter to this system </Link></Button>{" "}<br />
-        //                 </Typography>
-        //                 <Box
-        //                     sx={{
-        //                         display: 'flex',
-        //                         flexDirection: 'column',
-        //                         alignItems: 'center',
-        //                         '& > *': {
-        //                             m: 1,
-        //                         },
-        //                     }}
-        //                 >
-        //                     <CardActions >
-        //                         <Button variant="outlined" onClick=
-        //                             {
-        //                                 () => navigate(`/systemDetails/?urlName=` + s.urlName)
-        //                             }
-        //                         >show system</Button>
-        //                     </CardActions>
-        //                 </Box>
-        //             </div>
-        //         </CardContent>
-        //     </Card>
-        // ))}
-        // <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
-        //     <Link to={`/add`} style={{ listStyle: "none" }}> to add system</Link>{" "}<br />
-        // </Typography>
-//     </>
-// );
-
-// }
+export default observer(Systems);

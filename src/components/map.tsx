@@ -21,7 +21,7 @@ type DirectiosResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
 export default function Map() {
-  const [office, setOffice] = useState<LatLngLiteral>();
+  const [office, setOffice] = useState();
   const [direction, setDirection] = useState<DirectiosResult>();
   const mapRef = useRef<GoogleMap>()
   const center = useMemo<LatLngLiteral>(() => ({ lat: 43, lng: -80 }), []);

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 import { add } from '../api/user';
-import { Erole, User } from '../models/user.model';
+import { eRole, User } from '../models/user.model';
 
 export default function CreateSystem() {
 
@@ -18,7 +18,7 @@ export default function CreateSystem() {
         <Alert severity="success">This is a success!</Alert>
         const user: User = {
             // _id:'',
-            role: Erole.customer,
+            role: eRole.customer,
 
             firstName,
             lastName,
