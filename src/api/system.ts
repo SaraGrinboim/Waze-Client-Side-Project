@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { System } from '../models/system.model';
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 export const getSystems = async () => {
 

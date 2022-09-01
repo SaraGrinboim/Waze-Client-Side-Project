@@ -6,7 +6,7 @@ import { TextField } from '@mui/material';
 type PlaceProps = {
     setOffice: (position: google.maps.LatLngLiteral) => void;
 }
-const AutoComplete = ({ setOffice }: PlaceProps) => {
+const Auto = ({ setOffice }: PlaceProps) => {
     const { ready, value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete();
     const [inputVal, setInputVal] = useState("");
     const center = { lat: 70.064192, lng: -130.605469 };
@@ -66,4 +66,4 @@ const AutoComplete = ({ setOffice }: PlaceProps) => {
         </>
     );
 }
-export default AutoComplete;
+export default Auto;

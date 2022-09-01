@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { User } from '../models/user.model';
+import { makeAutoObservable } from 'mobx'
 
 export const get = async () => {
     try {
@@ -22,9 +23,9 @@ export const getById = async (id: string) => {
     }
 }
 
-export const update = (id: string, user: User) => {
+export const update = async (id: string, user: User) => {
     try {
-        return axios.put(`http://localhost:3333/user/${id}`, user);
+        return await axios.put(`http://localhost:3333/user/${id}`, user);
 
     }
     catch (error) {
@@ -32,21 +33,53 @@ export const update = (id: string, user: User) => {
     }
 }
 
-export const add = (user: User) => {
+export const add = async (user: User) => {
     try {
-        return axios.post(`http://localhost:3333/user`, user);
+        return await axios.post(`http://localhost:3333/user`, user);
     }
     catch (error) {
         console.log('error in add user', error);
     }
 }
 
-export const deleteById = (id: string) => {
+export const deleteById = async (id: string) => {
     try {
-        return axios.delete(`http://localhost:3333/user/${id}`);
+        return await axios.delete(`http://localhost:3333/user/${id}`);
 
     }
     catch (error) {
-        console.log ('error in delete user', error);
+        console.log('error in delete user', error);
     }
 }
+
+class Store {
+
+    user: User | any = null;
+    users: Array<User> = [];
+
+    constructor() {
+        makeAutoObservable(this);
+    }
+
+    async get() {
+        this.users = await get();
+        return this.users;
+    }
+
+    async getById(id: string) {
+        this.user = await getById(id);
+        return this.user
+    }
+
+    async add(user: User) {
+        await add(user);
+        this.users = await this.get();
+        return this.user;
+    }
+
+    async deleteById(id: string) {
+        await deleteById(id);
+    }
+}
+const UserStore = new Store();
+export default UserStore;
