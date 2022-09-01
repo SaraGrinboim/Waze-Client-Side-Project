@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './provider/AuthProvider';
 import { BrowserRouter } from 'react-router-dom';
-import { StyledEngineProvider } from '@mui/material';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
