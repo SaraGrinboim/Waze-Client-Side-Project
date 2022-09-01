@@ -1,6 +1,6 @@
 
 import { Circle, GoogleMap, Marker, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import '../styles/search.css';
 import AutoComplete from "./autoComplete";
 // }
@@ -19,7 +19,16 @@ export default function Map() {
     disableDefaultUi: true,
     clickableIcons: true,
   }), []);
-
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(function (position) {
+        setOffice({ lat: position.coords.latitude, lng: position.coords.longitude });
+        // window.console.log(position.coords.latitude)
+      });
+    }
+    // navigator.geolocation.getCurrentPosition(function(position){
+    // setOffice({lat:position.coords.latitude,lng:position.coords.longitude});})
+  }, []);
 
   const optionsMarker = {
     imagePath:
@@ -28,7 +37,7 @@ export default function Map() {
 
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
 
-  const houses = useMemo(() => generateHouses(JerusalemPosition),[center]);
+  const houses = useMemo(() => generateHouses(JerusalemPosition), [center]);
 
   const fetchDirections = (_houses: LatLngLiteral) => {
     if (!office) return;
@@ -49,11 +58,11 @@ export default function Map() {
 
   return <div className="container">
     <div className="controls">
-      <AutoComplete 
-      setOffice={(position: any) => {
-        setOffice(position);
-        mapRef.current?.panTo(position);
-      }} />
+      <AutoComplete
+        setOffice={(position: any) => {
+          setOffice(position);
+          mapRef.current?.panTo(position);
+        }} />
     </div>
     <div className="map">
       <GoogleMap
@@ -63,25 +72,21 @@ export default function Map() {
         options={options}
         onLoad={onLoad}
       >
-        {office &&  (
         <>
-        
-       
-        <Marker position={office} />
-
-        {/* <MarkerClusterer> */}
-          {/* {(clusterer)=>{
-            houses.map((house)=>(
-              <Marker key={house.lat} position={house}/>
-            )
-          }} */}
-        {/* </MarkerClusterer> */}
-        <Circle center={office} radius={15000} options = { closeOptions }/>
-        <Circle center={office} radius={30000} options = { middleOptions }/>
-        <Circle center={office} radius={45000} options = { farOptions }/>
-
-        
+          {/* { && <Marker position={office} />} */}
         </>
+        {office && (
+          <>
+
+
+            <Marker position={office} />
+
+            <Circle center={office} radius={15000} options={closeOptions} />
+            <Circle center={office} radius={30000} options={middleOptions} />
+            <Circle center={office} radius={45000} options={farOptions} />
+
+
+          </>
         )}
 
       </GoogleMap>

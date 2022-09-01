@@ -107,7 +107,7 @@ function App() {
           {/* <Route path="systemDetails/:urlName" element={<ShowSystem/>}/> */}
           <Route path=":urlName" element={<ShowSystem />} />
           
-          <Route path="map" element={<Map/>} />
+          {/* <Route path="map" element={<Map/>} /> */}
 
           <Route path="*" element={<h1> A mistake </h1>} />
         </Routes>
