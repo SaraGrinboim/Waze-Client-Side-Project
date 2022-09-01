@@ -23,6 +23,7 @@ const Systems = () => {
     async function getAllSystems() {
         try {
             await systemStore.getSystems();
+            console.log(systemStore.systems);
         }
         catch (error) {
             console.error(error);
