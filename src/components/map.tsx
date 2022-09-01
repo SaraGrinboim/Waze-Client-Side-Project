@@ -1,18 +1,6 @@
-// import { useMemo } from "react";
-// import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-// export default function Map() {
-//   const center = useMemo(() => ({ lat: 32, lng: 35 }), [])
-//   const { isLoaded } = useLoadScript({
-//     googleMapsApiKey: "AIzaSyBL9SengOBv22kYKJDCPRUSvgt_orH7q0M",
-//   });
-//   if (!isLoaded) return <div>isLoading...</div>
-//   return (
-//     <GoogleMap zoom={10} center={center} mapContainerClassName="mapContainer">
-//       <Marker position={center}></Marker>
-//     </GoogleMap>);
 
 import { Circle, GoogleMap, Marker, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import '../styles/search.css';
 import AutoComplete from "./autoComplete";
 // }
@@ -31,12 +19,17 @@ export default function Map() {
     disableDefaultUi: true,
     clickableIcons: true,
   }), []);
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(function (position) {
+        setOffice({ lat: position.coords.latitude, lng: position.coords.longitude });
+        // window.console.log(position.coords.latitude)
+      });
+    }
+    // navigator.geolocation.getCurrentPosition(function(position){
+    // setOffice({lat:position.coords.latitude,lng:position.coords.longitude});})
+  }, []);
 
-  // const { isLoaded } = useLoadScript({
-  //   googleMapsApiKey: "AIzaSyDMuHvUyS3JFJ85UXef9xNKex631FzsSU0",
-  //   libraries: ["places"],
-  // }
-  // )
   const optionsMarker = {
     imagePath:
       'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
@@ -44,7 +37,7 @@ export default function Map() {
 
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
 
-  const houses = useMemo(() => generateHouses(JerusalemPosition),[center]);
+  const houses = useMemo(() => generateHouses(JerusalemPosition), [center]);
 
   const fetchDirections = (_houses: LatLngLiteral) => {
     if (!office) return;
@@ -65,11 +58,11 @@ export default function Map() {
 
   return <div className="container">
     <div className="controls">
-      <AutoComplete 
-      setOffice={(position: any) => {
-        setOffice(position);
-        mapRef.current?.panTo(position);
-      }} />
+      <AutoComplete
+        setOffice={(position: any) => {
+          setOffice(position);
+          mapRef.current?.panTo(position);
+        }} />
     </div>
     <div className="map">
       <GoogleMap
@@ -79,25 +72,21 @@ export default function Map() {
         options={options}
         onLoad={onLoad}
       >
-        {office &&  (
         <>
-        // icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-       
-        <Marker position={office} />
-
-        {/* <MarkerClusterer> */}
-          {/* {(clusterer)=>{
-            houses.map((house)=>(
-              <Marker key={house.lat} position={house}/>
-            )
-          }} */}
-        {/* </MarkerClusterer> */}
-        <Circle center={office} radius={15000} options = { closeOptions }/>
-        <Circle center={office} radius={30000} options = { middleOptions }/>
-        <Circle center={office} radius={45000} options = { farOptions }/>
-
-        
+          {/* { && <Marker position={office} />} */}
         </>
+        {office && (
+          <>
+
+
+            <Marker position={office} />
+
+            <Circle center={office} radius={15000} options={closeOptions} />
+            <Circle center={office} radius={30000} options={middleOptions} />
+            <Circle center={office} radius={45000} options={farOptions} />
+
+
+          </>
         )}
 
       </GoogleMap>

@@ -2,6 +2,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Users from './components/users';
+import Login from './components/login';
 import CreateSystem from "./components/createSystem";
 import ShowSystem from "./components/showSystem";
 import Systems from './components/system';
@@ -93,7 +94,7 @@ function App() {
 
       <>
         <Routes>
-          {/* <Route path="" element={<Login />} /> */}
+          <Route path=""  element={<Login />} />
           <Route path="add" element={<CreateSystem />} />
 
           <Route path="searchPage" element={<SearchPage />} />
@@ -106,7 +107,7 @@ function App() {
           {/* <Route path="systemDetails/:urlName" element={<ShowSystem/>}/> */}
           <Route path=":urlName" element={<ShowSystem />} />
           
-          <Route path="map" element={<Map/>} />
+          {/* <Route path="map" element={<Map/>} /> */}
 
           <Route path="*" element={<h1> A mistake </h1>} />
         </Routes>
