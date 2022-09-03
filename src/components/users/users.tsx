@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-// import { useRecoilState, useSetRecoilState } from 'recoil';
+import { Link } from "react-router-dom";
 import UserStore from '../../api/user';
 import { User } from "../../models/user.model";
 import Card from '@mui/material/Card';
@@ -8,9 +7,6 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { observer } from 'mobx-react';
-
-import FormGroup from '@mui/material/FormGroup';
-
 
 const Users: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -37,8 +33,6 @@ const Users: React.FC = () => {
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                     <Link to={`/system/getSystemByUrlName/:urlName`}> to show system</Link>{" "}<br />
                     </Typography>
-                    {/* <Button variant="contained">Contained</Button>
-                    <Button variant="outlined">Outlined</Button> */}        
                 </li>
               </CardContent>
             </Card>
@@ -47,5 +41,4 @@ const Users: React.FC = () => {
     </div >
   );
 }
-//משום מה לא עובד לי בלי הדיפולט
 export default observer(Users);

@@ -1,10 +1,8 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { auth } from '../firebaseSetup';
 import { AuthContext } from '../context/AuthContext';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import '../styles/login.css'
 
 import UserStore from '../api/user';
@@ -70,7 +68,6 @@ function Login() {
                 {user && <Button variant="outlined" onClick={signOut}>Sign Out</Button>}
             </header>
             {!user ?
-                // <Grid container justifyContent="center" spacing={{ xs: 2, md: 3 }} >
                 <div className="conteiner">
                     <div className="section">
                         <TextField id="outlined-basic" label="email" variant="outlined" required value={email}
@@ -101,16 +98,6 @@ function Login() {
 
                         <Button variant="contained" onClick={signIn}>Sign In</Button>
                     </div>
-                    {/* sx={{
-                  height: 140,
-                  width: 100,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-                }}
-              /> */}
-                    {/* </Grid> */}
-
-
                 </div> : (
                     <h2 >Welcome {user.email}</h2>
                 )

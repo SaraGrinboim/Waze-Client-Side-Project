@@ -1,4 +1,5 @@
-import { Circle, GoogleMap, Marker, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
+import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
+// , MarkerClusterer, useLoadScript
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 // import Auto from './autocomplete'
@@ -12,9 +13,10 @@ type MapOptions = google.maps.MapOptions;
 
 export default function Map() {
   const [office, setOffice] = useState<google.maps.LatLngLiteral>();
+
   const [direction, setDirection] = useState<DirectiosResult>();
   const mapRef = useRef<GoogleMap>()
-  const [zoom,setZoom]=useState(9);
+  const [zoom, setZoom] = useState(9);
   const center = useMemo<LatLngLiteral>(() => ({ lat: 43, lng: -80 }), []);
   const JerusalemPosition = useMemo<LatLngLiteral>(() => ({ lat: 31.771959, lng: 35.217018 }), []);
   const options = useMemo<MapOptions>(() => ({
@@ -75,7 +77,7 @@ export default function Map() {
         options={options}
         onLoad={onLoad}
       > */}
-      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"map-container"}onLoad={onLoad} >
+      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"map-container"} onLoad={onLoad} >
         <>
           {/* { && <Marker position={office} />} */}
         </>

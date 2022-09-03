@@ -1,16 +1,14 @@
 import { Alert, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
-// import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
 import UserStore from '../../api/user';
 import { eRole, User } from '../../models/user.model';
 
 function CreateUser() {
 
     const [role, setRole] = useState('');
-    const [firstName, setfirstName] = useState('');
-    const [lastName, setlastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
 
@@ -20,7 +18,6 @@ function CreateUser() {
         const user: User = {
             // _id:'',
             role: eRole.customer,
-
             firstName,
             lastName,
             email,
@@ -45,10 +42,7 @@ function CreateUser() {
         //   autoComplete="off"
         >
             <h3>create new system</h3>
-            {/* <TextField id="outlined-basic" label="topic" variant="outlined"  className="mb-3"/>
-      <TextField id="outlined-basic" label="objectName" variant="outlined" className="mb-3" /> */}
-            {/* <TextField id="filled-basic" label="Filled" variant="filled" />
-      <TextField id="standard-basic" label="Standard" variant="standard" /> */}
+           
             <div className="mb-3">
                 {/* <label>role</label>
                 <input
@@ -78,7 +72,7 @@ function CreateUser() {
                     placeholder="Enter objectName"
                     onChange={(e) => setfirstName(e.target.value)}
                 /> */}
-                <TextField id="outlined-basic" label="first name" variant="outlined" onChange={(e) => setfirstName(e.target.value)} />
+                <TextField id="outlined-basic" label="first name" variant="outlined" onChange={(e) => setFirstName(e.target.value)} />
             </div>
             <div className="mb-3">
                 {/* <label>last name</label>
@@ -88,7 +82,7 @@ function CreateUser() {
                     placeholder="Enter topic"
                     onChange={(e) => setlastName(e.target.value)}
                 /> */}
-                <TextField id="outlined-basic" label="last name" variant="outlined" onChange={(e) => setlastName(e.target.value)} />
+                <TextField id="outlined-basic" label="last name" variant="outlined" onChange={(e) => setLastName(e.target.value)} />
             </div>
             <div className="mb-3">
                 {/* <label>email</label>

@@ -1,4 +1,3 @@
-import { style } from '@mui/system';
 import '../../styles/search.css';
 import { useLoadScript } from "@react-google-maps/api";
 import Map from './map';

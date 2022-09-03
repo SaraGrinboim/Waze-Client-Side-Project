@@ -1,14 +1,12 @@
-
-import React, { useEffect, useState } from 'react';
-import { Combobox, ComboboxInput, ComboboxList, ComboboxOption, ComboboxPopover } from "@reach/combobox";
+import React, { useEffect } from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { TextField } from '@mui/material';
 type PlaceProps = {
     setOffice: (position: google.maps.LatLngLiteral) => void;
 }
 const Auto = ({ setOffice }: PlaceProps) => {
-    const { ready, value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete();
-    const [inputVal, setInputVal] = useState("");
+    const { value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete();
+    // const [inputVal, setInputVal] = useState("");
     const center = { lat: 70.064192, lng: -130.605469 };
     const defaultBounds = {
         north: center.lat + 0.1,
