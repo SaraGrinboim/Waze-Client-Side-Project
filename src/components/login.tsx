@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import '../styles/login.css'
 import { add } from '../api/user';
-import { Erole, User } from '../models/user.model';
+import { eRole, User } from '../models/user.model';
 export default function Login() {
     const user = useContext(AuthContext);
     const [email, setEmail] = useState<string>("");
@@ -29,7 +29,7 @@ export default function Login() {
         }
         try{
             let u:User={
-                role:Erole.admin,
+                role:eRole.admin,
                 firstName:firstName,
                 lastName:lastName,
                 email:email,
