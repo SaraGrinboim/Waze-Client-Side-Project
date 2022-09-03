@@ -2,8 +2,8 @@ import { Circle, GoogleMap, Marker, MarkerClusterer, useLoadScript } from "@reac
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 // import Auto from './autocomplete'
-import '../styles/search.css';
-import Auto from "./autoComplete";
+import '../../styles/search.css';
+import Auto from "./autocomplete";
 
 // }
 type LatLngLiteral = google.maps.LatLngLiteral;
@@ -12,7 +12,6 @@ type MapOptions = google.maps.MapOptions;
 
 export default function Map() {
   const [office, setOffice] = useState<google.maps.LatLngLiteral>();
-
   const [direction, setDirection] = useState<DirectiosResult>();
   const mapRef = useRef<GoogleMap>()
   const [zoom,setZoom]=useState(9);

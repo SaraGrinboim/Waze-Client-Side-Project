@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 // import { useRecoilState, useSetRecoilState } from 'recoil';
-import { eRole, User } from '../models/user.model';
-import UserStore from '../api/user';
+import { eRole, User } from '../../models/user.model';
+import UserStore from '../../api/user';
 import Button from '@mui/material/Button';
 import { observer } from 'mobx-react';
 

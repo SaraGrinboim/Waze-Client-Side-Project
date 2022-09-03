@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 // import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
-import UserStore from '../api/user';
-import { eRole, User } from '../models/user.model';
+import UserStore from '../../api/user';
+import { eRole, User } from '../../models/user.model';
 
 function CreateUser() {
 

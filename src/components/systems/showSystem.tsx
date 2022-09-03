@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
 // import { systemecoilState, useSetRecoilState } from 'recoil';
-import systemStore from '../api/system';
-import { getSystemsByUrlName, deleteSystem, getSystemById, updateSystem } from '../api/system';
+import systemStore from '../../api/system';
+import { getSystemsByUrlName, deleteSystem, getSystemById, updateSystem } from '../../api/system';
 // import '@fontsource/roboto/300.css';
 // import '@fontsource/roboto/400.css';
 // import '@fontsource/roboto/500.css';
@@ -12,8 +12,8 @@ import { Button, Card, CardContent, Typography, TextField } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import swal from 'sweetalert';
-import { System } from '../models/system.model';
-import '../styles/system.css';
+import { System } from '../../models/system.model';
+import '../../styles/system.css';
 
 const ShowSystem = () => {
 

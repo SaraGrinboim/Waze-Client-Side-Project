@@ -1,12 +1,12 @@
 
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Users from './components/users';
+import Users from './components/users/users';
 import Login from './components/login';
-import CreateSystem from "./components/createSystem";
-import ShowSystem from "./components/showSystem";
-import Systems from './components/system';
-import SearchPage from './components/searchPage';
+import CreateSystem from "./components/systems/createSystem";
+import ShowSystem from "./components/systems/showSystem";
+import Systems from './components/systems/system';
+import SearchPage from './components/map/searchPage';
 import * as React from 'react';
 
 import AppBar from '@mui/material/AppBar';
@@ -21,7 +21,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import Map from './components/map';
+import Map from './components/map/map';
 function App() {
 
   const [auth, setAuth] = React.useState(true);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { System } from '../models/system.model';
-import systemStore from '../api/system';
+import { System } from '../../models/system.model';
+import systemStore from '../../api/system';
 import { Button, TextField } from '@mui/material';
 import {  useNavigate } from 'react-router-dom';
 
