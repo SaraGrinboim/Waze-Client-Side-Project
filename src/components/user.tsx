@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 // import { useRecoilState, useSetRecoilState } from 'recoil';
 import { eRole, User } from '../models/user.model';
-import { getById, deleteById } from '../api/user';
+import UserStore from '../api/user';
 import Button from '@mui/material/Button';
+import { observer } from 'mobx-react';
 
 const ShowUser = () => {
     const { userId } = useParams();
@@ -20,7 +21,7 @@ const ShowUser = () => {
     const navigate = useNavigate();
     // const [name, setName] = useState(user?.name);
     useEffect(() =>{
-       getById(String(userId)).then((u) =>{
+       UserStore.getById(String(userId)).then((u) =>{
         setUser(u);
        })
         if (!user) {
@@ -30,7 +31,7 @@ const ShowUser = () => {
     }, []);
 
     const Delete = async () =>{
-      let result =  await deleteById(String(user._id));
+      let result =  await UserStore.deleteById(String(user._id));
         console.log(result);
         navigate('/user');
     };
@@ -79,5 +80,5 @@ const ShowUser = () => {
 
 }
 
-export default ShowUser;
+export default observer(ShowUser);
 

@@ -6,9 +6,12 @@ import { AuthContext } from '../context/AuthContext';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import '../styles/login.css'
-import { add } from '../api/user';
+
+import UserStore from '../api/user';
 import { eRole, User } from '../models/user.model';
-export default function Login() {
+import { observer } from 'mobx-react';
+
+function Login() {
     const user = useContext(AuthContext);
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -35,7 +38,7 @@ export default function Login() {
                 email:email,
                 phone:phone
             };
-            const user=await add(u);
+            const user=await UserStore.add(u);
             alert(JSON.stringify(user))
         }
         catch (error) {
@@ -115,3 +118,4 @@ export default function Login() {
         </div >
     )
 }
+export default observer(Login);

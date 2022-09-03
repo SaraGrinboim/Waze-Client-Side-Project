@@ -1,7 +1,10 @@
 import { Circle, GoogleMap, Marker, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
+import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+// import Auto from './autocomplete'
 import '../styles/search.css';
-import AutoComplete from "./autoComplete";
+import Auto from "./autoComplete";
+
 // }
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectiosResult = google.maps.DirectionsResult;
@@ -9,6 +12,7 @@ type MapOptions = google.maps.MapOptions;
 
 export default function Map() {
   const [office, setOffice] = useState<google.maps.LatLngLiteral>();
+
   const [direction, setDirection] = useState<DirectiosResult>();
   const mapRef = useRef<GoogleMap>()
   const [zoom,setZoom]=useState(9);
@@ -57,7 +61,7 @@ export default function Map() {
 
   return <div className="container">
     <div className="controls">
-      <AutoComplete
+      <Auto
         setOffice={(position: any) => {
           setOffice(position);
           mapRef.current?.panTo(position);

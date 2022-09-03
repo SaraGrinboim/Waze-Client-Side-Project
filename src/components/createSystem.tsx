@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { System } from '../models/system.model';
-import { createSystem } from '../api/system';
+import systemStore from '../api/system';
 import { Button, TextField } from '@mui/material';
 import {  useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ export default function CreateSystem() {
       logoUrl
     }
     console.log(sys);
-    let result = await createSystem(sys);
+    let result = await systemStore.createSystem(sys);
     console.log(result);
     navigate('/systems');
   }

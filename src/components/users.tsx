@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 // import { useRecoilState, useSetRecoilState } from 'recoil';
-import { get } from '../api/user';
+import UserStore from '../api/user';
 import { User } from "../models/user.model";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { observer } from 'mobx-react';
 
 import FormGroup from '@mui/material/FormGroup';
 
 
 const Users: React.FC = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    get()?.then((users) =>
+    UserStore.get()?.then((users) =>
       setUsers(users))
   }, [])
 
@@ -47,4 +48,4 @@ const Users: React.FC = () => {
   );
 }
 //משום מה לא עובד לי בלי הדיפולט
-export default Users;
+export default observer(Users);

@@ -1,11 +1,12 @@
 import { Alert, Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import { observer } from 'mobx-react';
 // import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
-import { add } from '../api/user';
+import UserStore from '../api/user';
 import { eRole, User } from '../models/user.model';
 
-export default function CreateSystem() {
+function CreateUser() {
 
     const [role, setRole] = useState('');
     const [firstName, setfirstName] = useState('');
@@ -26,7 +27,7 @@ export default function CreateSystem() {
             phone
         }
         console.log(user);
-        let result = await add(user);
+        let result = await UserStore.add(user);
         console.log(result);
     }
 
@@ -118,4 +119,4 @@ export default function CreateSystem() {
         </form>
     );
 }
-
+export default observer(CreateUser);

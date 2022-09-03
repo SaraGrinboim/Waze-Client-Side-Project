@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react';
 // import { systemecoilState, useSetRecoilState } from 'recoil';
-
+import systemStore from '../api/system';
 import { getSystemsByUrlName, deleteSystem, getSystemById, updateSystem } from '../api/system';
 // import '@fontsource/roboto/300.css';
 // import '@fontsource/roboto/400.css';
@@ -30,23 +31,22 @@ const ShowSystem = () => {
     const { urlName, id } = useParams();
     const [system, setSystem] = useState(s);
     const [edit, setEdit] = useState(false);
+    
     useEffect(() => {
-        if (id)
-            getSystemById(String(id)).then((s) => {
-                console.log(s);
-                setSystem(s);
-            })
-        else {
-            getSystemsByUrlName(String(urlName)).then((s) => {
-                console.log(s);
-                setSystem(s);
-            })
+        async function getSystem  ()  {
+            if (id){
+                await systemStore.getSystemById(String(id))
+            }
+            else {
+                await systemStore.getSystemsByUrlName(String(urlName))
+            }
+    
+            if (!systemStore.system) {
+                alert('no system found');
+                navigate('/systems');
+            }
         }
-
-        if (!system) {
-            alert('no system found');
-            navigate('/systems');
-        }
+        getSystem();
     }, []);
 
 
@@ -62,7 +62,7 @@ const ShowSystem = () => {
                 console.log('name: ' + willDelete);
                 if (willDelete) {
                     try {
-                        let result = await deleteSystem(String(system._id));
+                        let result = await systemStore.deleteSystem(String(systemStore.system._id));
                         console.log(result);
                         swal("Poof! Your system has been deleted!", {
                             icon: "success",
@@ -86,11 +86,12 @@ const ShowSystem = () => {
     const phone: any = useRef();
     const URLName: any = useRef();
     const LogoUrl: any = useRef();
+
     const Edit = async () => {
         const newSystem: System = {
             "topic": topic.current?.value,
             "objectName": objectName.current?.value,
-            "ownerId": system.ownerId,
+            "ownerId": systemStore.system.ownerId,
             "description": description.current?.value,
             "email": email.current?.value,
             "phone": phone.current?.value,
@@ -108,9 +109,7 @@ const ShowSystem = () => {
             .then(async function name(willDelete: any) {
                 if (willDelete) {
                     try {
-                        console.log(newSystem);
-                        let result = await updateSystem(String(system._id), newSystem);
-                        console.log(result);
+                        let result = await systemStore.updateSystem(String(systemStore.system._id), newSystem);
                         swal("Poof! Your system has been edited!", {
                             icon: "success",
                         });
@@ -127,32 +126,32 @@ const ShowSystem = () => {
     return (
         <>
             {
-                system &&
+                systemStore.system &&
                 // className="card"
                 <Card sx={{ maxWidth: 345 }} >
                     <CardContent>
                         <form className='auth-inner'>
                             <Typography variant="h3">The system</Typography>
                             <div className="mb-3">
-                                <Typography variant="h5">topic:  {system.topic}</Typography>
+                                <Typography variant="h5">topic:  {systemStore.system.topic}</Typography>
                             </div>
                             <div className="mb-3">
-                                <Typography variant="h5">objectName:   {system.objectName}</Typography>
+                                <Typography variant="h5">objectName:   {systemStore.system.objectName}</Typography>
                             </div>
                             <div className="mb-3">
-                                <Typography variant="h5">description:   {system.description}</Typography>
+                                <Typography variant="h5">description:   {systemStore.system.description}</Typography>
                             </div>
                             <div className="mb-3">
-                                <Typography variant="h5">urlName:   {system.urlName}</Typography>
+                                <Typography variant="h5">urlName:   {systemStore.system.urlName}</Typography>
                             </div>
                             <div className="mb-3">
-                                <Typography variant="h5">owner Id:   {system.ownerId}</Typography>
+                                <Typography variant="h5">owner Id:   {systemStore.system.ownerId}</Typography>
                             </div>
                             <div className="mb-3">
-                                <Typography variant="h5">email address:   {system.email}</Typography>
+                                <Typography variant="h5">email address:   {systemStore.system.email}</Typography>
                             </div>
                             <div className="mb-3">
-                                <Typography variant="h5">phone number:   {system.phone}</Typography>
+                                <Typography variant="h5">phone number:   {systemStore.system.phone}</Typography>
                             </div>
                             <div className="d-grid">
                                 <Button onClick={Delete} startIcon={<DeleteIcon />}></Button>
@@ -196,4 +195,4 @@ const ShowSystem = () => {
     );
 }
 // }
-export default ShowSystem;
+export default observer(ShowSystem);
