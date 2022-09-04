@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Manager } from "../models/manager.model";
+import { makeAutoObservable } from 'mobx';
 
 export const createManager = async (manager:Manager) => {
 
@@ -11,3 +12,19 @@ export const createManager = async (manager:Manager) => {
     }
 
 }
+
+class Store{
+
+    manager:Manager|any=null;
+    constructor(){
+        makeAutoObservable(this);
+    }
+
+    async createManager(manager:Manager){
+        this.manager = await createManager(manager);
+        return this.manager;
+    }
+
+}
+const managerStore = new Store();
+export default managerStore;
