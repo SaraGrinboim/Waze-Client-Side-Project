@@ -55,29 +55,29 @@ export const deleteById = async (id: string) => {
 class Store {
 
     user: User | any = null;
-    users: Array<User> = [];
+    users: User[] = [];
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    async get() {
+    async get():Promise<User[]> {
         this.users = await get();
         return this.users;
     }
 
-    async getById(id: string) {
+    async getById(id: string): Promise<User>{
         this.user = await getById(id);
-        return this.user
+        return this.user;
     }
 
-    async add(user: User) {
+    async add(user: User): Promise<User>{
         await add(user);
         this.users = await this.get();
         return this.user;
     }
 
-    async deleteById(id: string) {
+    async deleteById(id: string):Promise<void> {
         await deleteById(id);
     }
 }
