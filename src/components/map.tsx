@@ -2,7 +2,7 @@ import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
 // , MarkerClusterer, useLoadScript
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Auto from './autoComplete'
+import Auto from './autocomplete'
 import '../styles/search.css';
 // }
 type LatLngLiteral = google.maps.LatLngLiteral;
