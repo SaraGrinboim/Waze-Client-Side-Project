@@ -1,12 +1,12 @@
 export type System = {
-  
-    _id?:String,
+
+    _id?: String,
     topic: string,
     objectName: string,
-    ownerId: String;
+    ownerId: String,
     description: string,
-    email: String;
-    phone: String;
-    urlName: String;
-    logoUrl?: String;
+    email: String,
+    phone: String,
+    urlName: String,
+    logoUrl?: String,
 }
