@@ -1,13 +1,13 @@
 export type Request = {
 
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: Number,
-    system_id: String,
-    display_name: String,
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string,
+    system_id: string,
+    display_name: string,
     status: eStatus,
-    notes: String,
+    notes: string,
 
 }
 

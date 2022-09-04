@@ -1,11 +1,11 @@
 
 export interface User {
-    _id?: String,
+    _id?: any,
     role: eRole,
-    firstName: String,
-    lastName: String,
-    email: String,
-    phone: String
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone: string
 }
 
 export enum eRole {
