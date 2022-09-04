@@ -20,7 +20,7 @@ class Store{
         makeAutoObservable(this);
     }
 
-    async createManager(manager:Manager){
+    async createManager(manager:Manager):Promise<Manager>{
         this.manager = await createManager(manager);
         return this.manager;
     }
