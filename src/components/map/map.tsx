@@ -2,6 +2,7 @@ import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
 // , MarkerClusterer, useLoadScript
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import locationStore from "../../api/location";
 
 // import Auto from './autocomplete'
 import '../../styles/search.css';
@@ -24,7 +25,9 @@ export default function Map() {
     disableDefaultUi: true,
     clickableIcons: true,
   }), []);
-
+useEffect(()=>{
+  locationStore.location=office;
+},[office])
   const houses=useMemo(()=>generateHouses(center),[center]);
   useEffect(() => {
     if (navigator.geolocation) {
