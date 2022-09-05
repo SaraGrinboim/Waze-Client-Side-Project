@@ -5,10 +5,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { System } from '../models/system.model';
-import systemStore from '../api/system';
+import { System } from '../../models/system.model';
+import systemStore from '../../api/system';
 import { useNavigate } from 'react-router-dom';
-import '../styles/system.css';
+import '../../styles/system.css';
 
 const Systems = () => {
 

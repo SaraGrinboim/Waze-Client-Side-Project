@@ -71,42 +71,43 @@ export const deleteSystem = async (id: string) => {
 
 class Store {
 
-    // id: string = "";
-    system: any = null;
+    system: System | any = null;
     systems: System[] = [];
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    async getSystems() {
+    async getSystems(): Promise<System[]> {
         this.systems = await getSystems();
+        return this.systems;
     }
 
-    async getSystemById(id: string) {
+    async getSystemById(id: string): Promise<System> {
         this.system = await getSystemById(id)
+        return this.system;
     }
 
-    async getSystemsByUrlName(urlName: string) {
+    async getSystemsByUrlName(urlName: string): Promise<System> {
         this.system = await getSystemsByUrlName(urlName);
+        return this.system;
     }
 
-    async createSystem(system: System) {
+    async createSystem(system: System): Promise<System> {
         this.systems.push(system);
         return await createSystem(system);
     }
 
-    async updateSystem(id: string, s: System) {
+    async updateSystem(id: string, s: System): Promise<System[]> {
         await updateSystem(id, s);
-        this.systems = await getSystems(); 
-        return this.systems.filter((system) => system._id===id);   
+        this.systems = await getSystems();
+        return this.systems.filter((system) => system._id === id);
     }
 
-    async deleteSystem(id: string) {
+    async deleteSystem(id: string): Promise<System[]> {
         await deleteSystem(id);
-        this.systems = await getSystems(); 
-        console.log("after delete system"+this.systems);
-        return this.systems   
+        this.systems = await getSystems();
+        return this.systems;
     }
 
 }

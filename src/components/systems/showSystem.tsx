@@ -1,19 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
-// import { systemecoilState, useSetRecoilState } from 'recoil';
-import systemStore from '../api/system';
-import { getSystemsByUrlName, deleteSystem, getSystemById, updateSystem } from '../api/system';
-// import '@fontsource/roboto/300.css';
-// import '@fontsource/roboto/400.css';
-// import '@fontsource/roboto/500.css';
-// import '@fontsource/roboto/700.css';
+import systemStore from '../../api/system';
 import { Button, Card, CardContent, Typography, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import swal from 'sweetalert';
-import { System } from '../models/system.model';
-import '../styles/system.css';
+import { System } from '../../models/system.model';
+import '../../styles/system.css';
 
 const ShowSystem = () => {
 
@@ -29,7 +23,6 @@ const ShowSystem = () => {
     };
     const navigate = useNavigate();
     const { urlName, id } = useParams();
-    const [system, setSystem] = useState(s);
     const [edit, setEdit] = useState(false);
     
     useEffect(() => {
@@ -127,7 +120,6 @@ const ShowSystem = () => {
         <>
             {
                 systemStore.system &&
-                // className="card"
                 <Card sx={{ maxWidth: 345 }} >
                     <CardContent>
                         <form className='auth-inner'>
@@ -194,5 +186,4 @@ const ShowSystem = () => {
         </>
     );
 }
-// }
 export default observer(ShowSystem);

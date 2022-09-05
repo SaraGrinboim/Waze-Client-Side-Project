@@ -2,8 +2,11 @@ import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
 // , MarkerClusterer, useLoadScript
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Auto from './autocomplete'
-import '../styles/search.css';
+
+// import Auto from './autocomplete'
+import '../../styles/search.css';
+import Auto from "./autocomplete";
+
 // }
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectiosResult = google.maps.DirectionsResult;
@@ -13,6 +16,7 @@ export default function Map() {
   const [direction, setDirection] = useState<DirectiosResult>();
   const [zoom,setZoom]=useState(9);
   const mapRef = useRef<GoogleMap>()
+
   const center = useMemo<LatLngLiteral>(() => ({ lat: 43, lng: -80 }), []);
   const JerusalemPosition = useMemo<LatLngLiteral>(() => ({ lat: 31.771959, lng: 35.217018 }), []);
   const options = useMemo<MapOptions>(() => ({
@@ -64,13 +68,15 @@ export default function Map() {
         }} />
     </div>
     <div className="map">
-      <GoogleMap
+      {/* <GoogleMap
         zoom={zoom}
         center={center}
         mapContainerClassName="mapContainer"
         options={options}
         onLoad={onLoad}
-      >
+
+      >  */}
+      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"map-container"} onLoad={onLoad} >
         <>
           {/* { && <Marker position={office} />} */}
         </>

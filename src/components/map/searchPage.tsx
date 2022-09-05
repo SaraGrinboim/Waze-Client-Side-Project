@@ -1,7 +1,6 @@
-import { style } from '@mui/system';
-import '../styles/search.css';
+import '../../styles/search.css';
 import { useLoadScript } from "@react-google-maps/api";
-import Map from '../components/map';
+import Map from './map';
 
 const SearchPage = () => {
     const { isLoaded } = useLoadScript({

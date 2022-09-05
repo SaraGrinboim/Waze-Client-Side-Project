@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { System } from '../models/system.model';
-import systemStore from '../api/system';
+import { System } from '../../models/system.model';
+import systemStore from '../../api/system';
 import { Button, TextField } from '@mui/material';
 import {  useNavigate } from 'react-router-dom';
 
@@ -28,9 +28,7 @@ export default function CreateSystem() {
       urlName,
       logoUrl
     }
-    console.log(sys);
-    let result = await systemStore.createSystem(sys);
-    console.log(result);
+    await systemStore.createSystem(sys);
     navigate('/systems');
   }
 
@@ -46,10 +44,6 @@ export default function CreateSystem() {
     //   autoComplete="off"
     >
       <h3>create new system</h3>
-      {/* <TextField id="outlined-basic" label="topic" variant="outlined"  className="mb-3"/>
-      <TextField id="outlined-basic" label="objectName" variant="outlined" className="mb-3" /> */}
-      {/* <TextField id="filled-basic" label="Filled" variant="filled" />
-      <TextField id="standard-basic" label="Standard" variant="standard" /> */}
       <div className="mb-3">
         <TextField id="outlined-basic" label="enter topic" variant="outlined" onChange={(e) => setTopic(e.target.value)}></TextField>
       </div>

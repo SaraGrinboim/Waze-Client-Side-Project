@@ -1,32 +1,88 @@
-import axios from 'axios';
-import {Location} from '../models/location.model'
-//post
-export const createLocation = async (newLocation:Location) => {
-    console.log(newLocation);
+import axios from "axios"
+import { makeAutoObservable } from 'mobx';
+import { Location } from "../models/location.model";
+
+const getLocations = async () => {
     try {
-         await axios.post('http://localhost:3333/location/',newLocation);
+        const locations = await axios.get(`http://localhost:3333/location`);
+        return locations.data;
+    } catch (error) {
+        console.error(error);
     }
-    catch (error) {
-        console.log('error-createSystem',error);
+};
+
+const getLocationsBySystemId = async (id: string) => {
+    try {
+        const locations = await axios.get(`http://localhost:3333/location/${id}`);
+        return locations.data;
+    } catch (error) {
+        console.error(error);
     }
 }
-//put
-export const updateLocation= async (locationId:string, updateLocation:Location) => {
+
+export const createLocationsBySystemId = async (location: Location) => {
     try {
-         await axios.put(`http://localhost:3333/location/${locationId}`, updateLocation);
+        const newLocation = await axios.post(`http://localhost:3333/location`, location);
+        return newLocation.data;
+    } catch (error) {
+        console.error(error);
     }
-    catch (error) {
-        console.log('error - updateSystem',error);
+
+}
+
+const deleteLocation = async (id: string) => {
+    try {
+        await axios.delete(`http://localhost:3333/location/${id}`);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const updateLocation = async (id: string, location: Location) => {
+    try {
+        const newLocation = await axios.put(`http://localhost:3333/location/${id}`, location);
+        return newLocation.data;
+    } catch (error) {
+        console.error(error);
     }
 }
-//delete
-export const deleteLocation= async (locationId:string) => {
-    try {
-        await axios.delete(`http://localhost:3333/location/${locationId}`);
-        alert(`business ${locationId} deleted successfully`)
+
+class Store {
+
+    location: Location | any = null;
+    locations: Location[] = [];
+    allLocations: Location[] = [];
+
+    constructor() {
+        makeAutoObservable(this);
     }
-    catch (error) {
-        console.log('error - deleteSystem', error);
-        alert(`business ${locationId}failed to deleted successfully`);
+
+    async getLocations(): Promise<Location[]> {
+        this.allLocations = await getLocations();
+        return this.allLocations;
     }
+
+    async getLocationsBySystemId(id: string): Promise<Location[]> {
+        this.locations = await getLocationsBySystemId(id);
+        return this.locations;
+    }
+
+    async createLocationsBySystemId(location: Location): Promise<Location> {
+        this.location = await createLocationsBySystemId(location);
+        this.locations.push(location);
+        return this.location;
+    }
+
+    async deleteLocation(id: string): Promise<void> {
+        await deleteLocation(id);
+        this.allLocations= await this.getLocations();
+    }
+
+    async updateLocation(id: string, location: Location): Promise<Location> {
+        this.location = await updateLocation(id, location);
+        return this.location;
+    }
+
 }
+const locationStore = new Store();
+export default locationStore;
