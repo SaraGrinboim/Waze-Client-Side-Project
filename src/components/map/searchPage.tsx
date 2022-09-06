@@ -1,6 +1,7 @@
 import '../../styles/search.css';
 import { useLoadScript } from "@react-google-maps/api";
 import Map from './map';
+import CreateLocation from '../createLocation';
 
 const SearchPage = () => {
     const { isLoaded } = useLoadScript({
@@ -12,6 +13,7 @@ const SearchPage = () => {
     return (
         <div>
             <Map/>
+            <CreateLocation/>
         </div>
     )
 }

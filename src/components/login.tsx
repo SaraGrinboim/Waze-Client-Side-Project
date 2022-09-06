@@ -30,6 +30,7 @@ function Login() {
         }
         try{
             let u:User={
+                _id:auth.currentUser?.uid,
                 role:eRole.admin,
                 firstName:firstName,
                 lastName:lastName,
@@ -37,6 +38,8 @@ function Login() {
                 phone:phone
             };
             const user=await UserStore.add(u);
+            UserStore.user=user;
+   
             alert(JSON.stringify(user))
         }
         catch (error) {
@@ -50,6 +53,7 @@ function Login() {
             await auth.signInWithEmailAndPassword(
                 email, password
             );
+            const id=auth.currentUser?.uid
         } catch (error) {
             alert(error)
             console.error(error);

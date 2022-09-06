@@ -13,13 +13,13 @@ type LatLngLiteral = google.maps.LatLngLiteral;
 
 const CreateLocation = () => {
     const [newLocation, setnewLocation] = useState<Location>();
-    const [system_id, setSystem_id] = useState<String>();
-    const [manager_id, setManager_id] = useState<String>();
-    const [description, setDescription] = useState<String>();
+    const [system_id, setSystem_id] = useState<string>();
+    const [manager_id, setManager_id] = useState<string>();
+    const [description, setDescription] = useState<string>();
     const [location, setLocation] = useState<LatLngLiteral>();
-    const [name, setName] = useState<String>();
-    const [notes, setNotes] = useState<String>();
-    const [communication, setCommunication] = useState<String>();
+    const [name, setName] = useState<string>();
+    const [notes, setNotes] = useState<string>();
+    const [communication, setCommunication] = useState<string>();
     const addLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
         //     setnewLocation(
         //         {
@@ -29,8 +29,8 @@ const CreateLocation = () => {
         //     )
     }
     const handleSubmit = async () => {
-
-        const newLocation = {
+console.log(userStore.user)
+        const newLocation:Location = {
             manager_id: userStore.user._id,
             system_id: systemStore.system._id,
             location: locationStore.location,
@@ -39,7 +39,7 @@ const CreateLocation = () => {
             notes: notes,
             communication: communication
         }
-        // locationStore.
+        locationStore.createLocationsBySystemId(newLocation);
         //  const resp = createLocationsBySystemId(newLocation)
     }
     return (
