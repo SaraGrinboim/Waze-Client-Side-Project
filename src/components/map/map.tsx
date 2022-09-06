@@ -15,7 +15,7 @@ type MapOptions = google.maps.MapOptions;
 export default function Map() {
   const [office, setOffice] = useState<LatLngLiteral>();
   const [direction, setDirection] = useState<DirectiosResult>();
-  const [zoom,setZoom]=useState(9);
+  const [zoom, setZoom] = useState(9);
   const mapRef = useRef<GoogleMap>()
 
   const center = useMemo<LatLngLiteral>(() => ({ lat: 43, lng: -80 }), []);
@@ -25,10 +25,10 @@ export default function Map() {
     disableDefaultUi: true,
     clickableIcons: true,
   }), []);
-useEffect(()=>{
-  locationStore.location=office;
-},[office])
-  const houses=useMemo(()=>generateHouses(center),[center]);
+  useEffect(() => {
+    locationStore.location = office;
+  }, [office])
+  const houses = useMemo(() => generateHouses(center), [center]);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(function (position) {
@@ -71,31 +71,25 @@ useEffect(()=>{
         }} />
     </div>
     <div className="map">
-      {/* <GoogleMap
-        zoom={zoom}
-        center={center}
-        mapContainerClassName="mapContainer"
-        options={options}
-        onLoad={onLoad}
 
-      >  */}
-      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"map-container"} onLoad={onLoad} >
-        <>
+      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"mapContainer"} onLoad={onLoad} options={options}>
+          {/* <h1>jj</h1> */}
+
           {/* { && <Marker position={office} />} */}
-        </>
-        {office && (
-          <>
-            <Marker position={office} />
-            {
-              houses.map((house: google.maps.LatLngLiteral) =>
-                <Marker key={house.lat} position={house}></Marker>)
-            }
-            <Circle center={office} radius={15000} options={closeOptions} />
-            <Circle center={office} radius={30000} options={middleOptions} />
-            <Circle center={office} radius={45000} options={farOptions} />
-          </>
-        )}
-      </GoogleMap>
+
+          {office && (
+            <>
+              <Marker position={office} />
+              {
+                houses.map((house: google.maps.LatLngLiteral) =>
+                  <Marker key={house.lat} position={house}></Marker>)
+              }
+              <Circle center={office} radius={15000} options={closeOptions} />
+              <Circle center={office} radius={30000} options={middleOptions} />
+              <Circle center={office} radius={45000} options={farOptions} />
+            </>
+          )}
+        </GoogleMap>
     </div>
   </div>
 }
