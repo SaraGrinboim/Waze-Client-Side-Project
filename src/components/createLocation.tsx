@@ -39,7 +39,9 @@ console.log(userStore.user)
             notes: notes,
             communication: communication
         }
+
         locationStore.createLocationsBySystemId(newLocation);
+
         //  const resp = createLocationsBySystemId(newLocation)
     }
     return (
