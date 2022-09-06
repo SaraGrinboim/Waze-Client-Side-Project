@@ -30,7 +30,7 @@ function Login() {
         }
         try{
             let u:User={
-                _id:auth.currentUser?.uid,
+                uid:auth.currentUser?.uid,
                 role:eRole.admin,
                 firstName:firstName,
                 lastName:lastName,
@@ -39,8 +39,8 @@ function Login() {
             };
             const user=await UserStore.add(u);
             UserStore.user=user;
-   
-            alert(JSON.stringify(user))
+console.log( UserStore.user)
+            // alert(JSON.stringify(user))
         }
         catch (error) {
             alert(error)
@@ -53,7 +53,16 @@ function Login() {
             await auth.signInWithEmailAndPassword(
                 email, password
             );
-            const id=auth.currentUser?.uid
+            const uid=auth.currentUser?.uid;
+            UserStore.getById(uid).then((user:User)=>{
+                console.log(user);
+                UserStore.user=user;
+            });
+
+            
+           
+            console.log(UserStore.user)
+           
         } catch (error) {
             alert(error)
             console.error(error);
@@ -63,9 +72,11 @@ function Login() {
 
     const signOut = async () => {
         await auth.signOut();
+        UserStore.user=null;
     };
 
     return (
+
         <div>
             <header>
                 <h2>Firebase Authentication</h2><br />

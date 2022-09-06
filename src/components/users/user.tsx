@@ -8,12 +8,13 @@ import { observer } from 'mobx-react';
 const ShowUser = () => {
     const { userId } = useParams();
     let u:User={
-        _id:"",
+        _id:'',
+        uid:'',
         role:eRole.admin,
-        firstName:"",
-        lastName:"",
-        email:"",
-        phone:""
+        firstName:'',
+        lastName:'',
+        email:'',
+        phone:''
     };
     const [user, setUser] = useState(u);
 
