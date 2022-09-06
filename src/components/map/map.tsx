@@ -1,4 +1,4 @@
-import { Circle, GoogleMap, Marker, MarkerClusterer } from "@react-google-maps/api";
+import { Circle, DirectionsRenderer, GoogleMap, Marker, MarkerClusterer, MarkerClustererProps } from "@react-google-maps/api";
 // , MarkerClusterer, useLoadScript
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -14,7 +14,7 @@ type DirectiosResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 export default function Map() {
   const [office, setOffice] = useState<LatLngLiteral>();
-  const [direction, setDirection] = useState<DirectiosResult>();
+  const [directions, setDirections] = useState<DirectiosResult>();
   const [zoom, setZoom] = useState(9);
   const mapRef = useRef<GoogleMap>()
 
@@ -25,8 +25,11 @@ export default function Map() {
     disableDefaultUi: true,
     clickableIcons: true,
   }), []);
+  useEffect(() => {
+    locationStore.location = office;
+    console.log(office);
+  }, [office])
 
-  const houses=useMemo(()=>generateHouses(center),[center]);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(function (position) {
@@ -41,9 +44,10 @@ export default function Map() {
   const optionsMarker = {
     imagePath:
       'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
-  }
+  };
+
   const onLoad = useCallback((map: any) => (mapRef.current = map), []);
-  // const houses = useMemo(() => generateHouses(JerusalemPosition), [center]);
+  const houses = useMemo(() => generateHouses(center), [center]);
   const fetchDirections = (_houses: LatLngLiteral) => {
     if (!office) return;
     const service = new google.maps.DirectionsService();
@@ -55,11 +59,12 @@ export default function Map() {
       },
       (result, status) => {
         if (status === "OK" && result) {
-          setDirection(result);
+          setDirections(result);
         }
       }
     )
-  }
+  };
+
   return <div className="container">
     <div className="controls">
       <Auto
@@ -77,22 +82,34 @@ export default function Map() {
         onLoad={onLoad}
 
       >  */}
-      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"map-container"} onLoad={onLoad} >
+      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"mapContainer"} onLoad={onLoad} >
         <>
           {/* { && <Marker position={office} />} */}
         </>
+        {directions && <DirectionsRenderer directions={directions} options={{ polylineOptions:{
+          zIndex:50,
+          strokeColor:"#1976D2",
+          strokeWeight:5
+        }}}/>}
+        {/* {directions && <DirectionsRenderer directions={directions} />} */}
         {office && (
           <>
             <Marker position={office} />
-            <MarkerClusterer>
-              {(clusterer) => 
-              houses.map((house: google.maps.LatLngLiteral) =>(
-                <Marker key={house.lat} position={house} clusterer={clusterer}/>))
-              }
-            </MarkerClusterer>
-            {
 
-            }
+            <MarkerClusterer>
+              {(clusterer:any|MarkerClustererProps | Readonly<MarkerClustererProps>): any=>
+               houses.map((h:any) => (
+              <Marker
+               key={h.lat}
+                position={h}
+                clusterer={clusterer}
+                onClick={()=>{
+                  fetchDirections(h)
+                }}
+                />
+                ))
+                }
+             </MarkerClusterer>
             <Circle center={office} radius={15000} options={closeOptions} />
             <Circle center={office} radius={30000} options={middleOptions} />
             <Circle center={office} radius={45000} options={farOptions} />
@@ -101,7 +118,8 @@ export default function Map() {
       </GoogleMap>
     </div>
   </div>
-}
+};
+
 const defaultOptions = {
   strokeOpacity: 0.5,
   strokeWeight: 2,
@@ -109,7 +127,8 @@ const defaultOptions = {
   drageAble: false,
   editAble: false,
   visible: true
-}
+};
+
 const closeOptions = {
   ...defaultOptions,
   zIndex: 3,
@@ -117,6 +136,7 @@ const closeOptions = {
   strokeColor: "#8BC34A",
   fillColor: "#8BC34A"
 };
+
 const middleOptions = {
   ...defaultOptions,
   zIndex: 2,
@@ -124,6 +144,7 @@ const middleOptions = {
   strokeColor: "#FBC02D",
   fillColor: "#FBC02D"
 };
+
 const farOptions = {
   ...defaultOptions,
   zIndex: 1,
@@ -131,14 +152,16 @@ const farOptions = {
   strokeColor: "#FF5252",
   fillColor: "#FF5252"
 };
+
 const generateHouses = (position: LatLngLiteral) => {
   const houses: Array<LatLngLiteral> = [];
   for (let i = 0; i < 5; i++) {
-    const direction = Math.random() < 0.5 ? -2 : 2;
+    const direction = Math.random() < 0.5 ? -0.1 : 0.1;
     houses.push({
       lat: position.lat * Math.random() / direction,
       lng: position.lng * Math.random() / direction,
     });
   }
+  houses.push({lat: 31.9023394, lng: 35.027524});
   return houses;
-}
+};
