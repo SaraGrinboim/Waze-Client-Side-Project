@@ -29,7 +29,7 @@ const CreateLocation = () => {
         //     )
     }
     const handleSubmit = async () => {
-      
+
         const newLocation = {
             manager_id: userStore.user._id,
             system_id: systemStore.system._id,

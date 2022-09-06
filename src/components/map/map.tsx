@@ -74,14 +74,6 @@ export default function Map() {
         }} />
     </div>
     <div className="map">
-      {/* <GoogleMap
-        zoom={zoom}
-        center={center}
-        mapContainerClassName="mapContainer"
-        options={options}
-        onLoad={onLoad}
-
-      >  */}
       <GoogleMap zoom={zoom} center={office} mapContainerClassName={"mapContainer"} onLoad={onLoad} >
         <>
           {/* { && <Marker position={office} />} */}
