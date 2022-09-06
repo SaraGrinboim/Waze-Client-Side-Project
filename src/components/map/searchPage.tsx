@@ -12,12 +12,8 @@ const SearchPage = () => {
         return <div>loading...</div>
     return (
         <div>
-<<<<<<< HEAD
             <Map/>
             <CreateLocation/>
-=======
-            <Map />
->>>>>>> d18067cba7bf3feabc75a734de1907b8cf6abc67
         </div>
     )
 }
