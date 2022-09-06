@@ -1,4 +1,4 @@
-import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
+import { Circle, GoogleMap, Marker, MarkerClusterer } from "@react-google-maps/api";
 // , MarkerClusterer, useLoadScript
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -14,7 +14,7 @@ type MapOptions = google.maps.MapOptions;
 export default function Map() {
   const [office, setOffice] = useState<LatLngLiteral>();
   const [direction, setDirection] = useState<DirectiosResult>();
-  const [zoom,setZoom]=useState(9);
+  const [zoom, setZoom] = useState(9);
   const mapRef = useRef<GoogleMap>()
 
   const center = useMemo<LatLngLiteral>(() => ({ lat: 43, lng: -80 }), []);
@@ -25,7 +25,7 @@ export default function Map() {
     clickableIcons: true,
   }), []);
 
-  const houses=useMemo(()=>generateHouses(center),[center]);
+  const houses = useMemo(() => generateHouses(center), [center]);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(function (position) {
@@ -83,9 +83,14 @@ export default function Map() {
         {office && (
           <>
             <Marker position={office} />
+            <MarkerClusterer>
+              {(clusterer) => 
+              houses.map((house: google.maps.LatLngLiteral) =>(
+                <Marker key={house.lat} position={house} clusterer={clusterer}/>))
+              }
+            </MarkerClusterer>
             {
-              houses.map((house: google.maps.LatLngLiteral) =>
-                <Marker key={house.lat} position={house}></Marker>)
+
             }
             <Circle center={office} radius={15000} options={closeOptions} />
             <Circle center={office} radius={30000} options={middleOptions} />

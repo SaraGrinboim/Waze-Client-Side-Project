@@ -45,3 +45,9 @@
 //      )
 // }
 // export default CreateLocation;
+
+const CreateLocation = () => {
+
+}
+
+export default CreateLocation;
