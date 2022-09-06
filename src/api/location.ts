@@ -20,9 +20,9 @@ const getLocationsBySystemId = async (id: string) => {
     }
 }
 
-export const createLocationsBySystemId = async (location: Location) => {
+export const createLocationsBySystemId = async (location: Location, system_id: String) => {
     try {
-        const newLocation = await axios.post(`http://localhost:3333/location`, location);
+        const newLocation = await axios.post(`http://localhost:3333/location/${system_id}`, location);
         return newLocation.data;
     } catch (error) {
         console.error(error);
@@ -67,15 +67,15 @@ class Store {
         return this.locations;
     }
 
-    async createLocationsBySystemId(location: Location): Promise<Location> {
-        this.location = await createLocationsBySystemId(location);
+    async createLocationsBySystemId(location: Location, system_id: String): Promise<Location> {
+        this.location = await createLocationsBySystemId(location,system_id);
         this.locations.push(location);
         return this.location;
     }
 
     async deleteLocation(id: string): Promise<void> {
         await deleteLocation(id);
-        this.allLocations= await this.getLocations();
+        this.allLocations = await this.getLocations();
     }
 
     async updateLocation(id: string, location: Location): Promise<Location> {
