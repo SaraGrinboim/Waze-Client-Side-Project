@@ -11,7 +11,7 @@ const getLocations = async () => {
     }
 };
 
-const getLocationsBySystemId = async (id) => {
+const getLocationsBySystemId = async (id:string) => {
     try {
         const locations = await axios.get(`http://localhost:3333/location/${id}`);
         return locations.data;
