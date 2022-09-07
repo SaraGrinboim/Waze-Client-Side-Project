@@ -81,5 +81,5 @@ class Store {
         await deleteById(id);
     }
 }
-const UserStore = new Store();
-export default UserStore;
+const userStore = new Store();
+export default userStore;

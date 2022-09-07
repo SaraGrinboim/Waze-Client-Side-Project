@@ -1,5 +1,4 @@
 export type Location = {
-
     manager_id: string,
     system_id: string,
     location: { lat: number, lng: number },
@@ -7,5 +6,4 @@ export type Location = {
     name: string,
     notes: string,
     communication: string
-
 }
