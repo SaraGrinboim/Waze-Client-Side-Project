@@ -1,6 +1,7 @@
 
 export interface User {
     _id?: any,
+    uid: string | undefined,
     role: eRole,
     firstName: string,
     lastName: string,
