@@ -1,4 +1,4 @@
-import { Circle, GoogleMap, Marker } from "@react-google-maps/api";
+import { Circle, DirectionsRenderer, GoogleMap, Marker, MarkerClusterer, MarkerClustererProps } from "@react-google-maps/api";
 // , MarkerClusterer, useLoadScript
 import React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -74,15 +74,7 @@ export default function Map() {
         }} />
     </div>
     <div className="map">
-      {/* <GoogleMap
-        zoom={zoom}
-        center={center}
-        mapContainerClassName="mapContainer"
-        options={options}
-        onLoad={onLoad}
-
-      >  */}
-      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"map-container"} onLoad={onLoad} >
+      <GoogleMap zoom={zoom} center={office} mapContainerClassName={"mapContainer"} onLoad={onLoad} >
         <>
           {/* { && <Marker position={office} />} */}
         </>

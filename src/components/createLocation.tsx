@@ -28,9 +28,11 @@ const CreateLocation = () => {
         //         }
         //     )
     }
+
     const handleSubmit = async () => {
-      
-        const newLocation = {
+
+        console.log(userStore.user)
+        const newLocation: Location = {
             manager_id: userStore.user._id,
             system_id: systemStore.system._id,
             location: locationStore.location,
@@ -39,7 +41,10 @@ const CreateLocation = () => {
             notes: notes,
             communication: communication
         }
-locationStore.
+        // locationStore.
+
+        locationStore.createLocationsBySystemId(newLocation);
+
         //  const resp = createLocationsBySystemId(newLocation)
     }
 
