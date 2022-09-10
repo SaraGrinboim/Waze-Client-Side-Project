@@ -1,4 +1,4 @@
-.css-1ri6ub7-MuiPaper-root-MuiCard-root {
+/* .css-1ri6ub7-MuiPaper-root-MuiCard-root {
     height: 75vh!important;
     box-shadow: 0px 0px 20px 1px #dfdede !important;
     border-radius: 33px !important;
@@ -9,7 +9,7 @@
     margin-bottom: 20px !important;
     margin-left: 5px !important;
     margin-right: 5px !important; 
-}
+} */
 
 /* .MuiPaper-elevation1{
 
@@ -31,7 +31,7 @@
     width: 40vw !important;
     display: flex !important;
     flex-direction: row !important;
-    /* margin: auto !important; */
+    margin: auto !important;
     justify-content: space-evenly !important;
     flex-wrap: wrap !important;
 }
@@ -51,7 +51,6 @@
 } */
 
 .card-systems-container{
-    width: 71vw !important;
     display: flex !important;
     flex-direction: row !important;
     margin: auto !important;
