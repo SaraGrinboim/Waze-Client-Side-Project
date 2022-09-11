@@ -8,6 +8,7 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import swal from 'sweetalert';
 import { System } from '../../models/system.model';
 import '../../styles/system.css';
+import userStore from '../../api/user';
 
 const ShowSystem = () => {
 
@@ -24,16 +25,16 @@ const ShowSystem = () => {
     const navigate = useNavigate();
     const { urlName, id } = useParams();
     const [edit, setEdit] = useState(false);
-    
+
     useEffect(() => {
-        async function getSystem  ()  {
-            if (id){
+        async function getSystem() {
+            if (id) {
                 await systemStore.getSystemById(String(id))
             }
             else {
                 await systemStore.getSystemsByUrlName(String(urlName))
             }
-    
+
             if (!systemStore.system) {
                 alert('no system found');
                 navigate('/systems');
@@ -145,6 +146,7 @@ const ShowSystem = () => {
                             <div className="mb-3">
                                 <Typography variant="h5">phone number:   {systemStore.system.phone}</Typography>
                             </div>
+                            {userStore.user && userStore.user.role ==='0'}
                             <div className="d-grid">
                                 <Button onClick={Delete} startIcon={<DeleteIcon />}></Button>
                                 <Button onClick={() => setEdit(true)} startIcon={<ModeEditOutlineIcon />}></Button>
