@@ -5,7 +5,7 @@ import { auth } from '../firebaseSetup';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/login.css'
 
-import UserStore from '../api/user';
+import userStore from '../api/user';
 import { eRole, User } from '../models/user.model';
 import { observer } from 'mobx-react';
 
@@ -28,18 +28,20 @@ function Login() {
             alert(error)
             console.error(error);
         }
-        try{
-            let u:User={
-                uid:auth.currentUser?.uid,
-                role:eRole.admin,
-                firstName:firstName,
-                lastName:lastName,
-                email:email,
-                phone:phone
+        try {
+            let u: User = {
+                uid: auth.currentUser?.uid,
+                role: eRole.admin,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: phone
             };
-            const user=await UserStore.add(u);
-            UserStore.user=user;
-console.log( UserStore.user)
+            await userStore.add(u).then((user: any) => {
+                userStore.user = user;
+                console.log(userStore.user)
+            });
+
             // alert(JSON.stringify(user))
         }
         catch (error) {
@@ -53,26 +55,26 @@ console.log( UserStore.user)
             await auth.signInWithEmailAndPassword(
                 email, password
             );
-            const uid=auth.currentUser?.uid;
-            UserStore.getById(uid).then((user:User)=>{
+            const uid = auth.currentUser?.uid;
+            userStore.getById(uid).then((user: User) => {
                 console.log(user);
-                UserStore.user=user;
+                userStore.user = user;
             });
 
-            
-           
-            console.log(UserStore.user)
-           
+
+
+            console.log(userStore.user)
+
         } catch (error) {
             alert(error)
             console.error(error);
         }
-   
+
     };
 
     const signOut = async () => {
         await auth.signOut();
-        UserStore.user=null;
+        userStore.user = null;
     };
 
     return (
@@ -104,7 +106,7 @@ console.log( UserStore.user)
                         <Button variant="contained" onClick={createAccount}>Sign Up</Button>
                     </div>
                     <div className="section">
-                        <TextField  className="item" id="outlined-basic" label="email" variant="outlined" required value={email}
+                        <TextField className="item" id="outlined-basic" label="email" variant="outlined" required value={email}
                             onChange={(e) => setEmail(e.target.value)} />
                         <br />
                         <TextField className="item" id="outlined-basic" label="password" variant="outlined" required value={password}

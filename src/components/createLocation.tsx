@@ -1,5 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createLocationsBySystemId } from '../api/location';
 import { Location } from '../models/location.model';
 import SearchPage from './map/searchPage'
@@ -28,9 +28,16 @@ const CreateLocation = () => {
         //         }
         //     )
     }
+<<<<<<< HEAD
+    useEffect(()=>{
+        console.log(userStore.user);
+    },[])
+    const handleSubmit = async () => {
+=======
 
     const handleSubmit = async () => {
 
+>>>>>>> f60a30e73001e4bed7f57cf53f41357948d6e2e4
         console.log(userStore.user)
         const newLocation: Location = {
             manager_id: userStore.user._id,

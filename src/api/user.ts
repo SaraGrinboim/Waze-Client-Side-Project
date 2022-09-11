@@ -35,7 +35,9 @@ export const update = async (id: string, user: User) => {
 
 export const add = async (user: User) => {
     try {
-        return await axios.post(`http://localhost:3333/user`, user);
+        const {data}= await axios.post(`http://localhost:3333/user`, user);
+        console.log(data)
+        return data;
     }
     catch (error) {
         console.log('error in add user', error);
@@ -73,7 +75,7 @@ class Store {
 
     async add(user: User): Promise<User>{
         await add(user);
-        this.users = await this.get();
+        this.user = await this.get();
         return this.user;
     }
 
