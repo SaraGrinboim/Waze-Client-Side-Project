@@ -18,10 +18,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+
 import Update from './components/systems/update';
-import Delete from './components/systems/delete';
+import DeleteSystem from './components/systems/delete';
 
 function App() {
+  const basic_url = process.env;
+
 
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -93,7 +96,7 @@ function App() {
 
       <>
         <Routes>
-          <Route path=""  element={<Login />} />
+          <Route path="" element={<Login />} />
           <Route path="add" element={<CreateSystem />} />
 
           <Route path="searchPage" element={<SearchPage />} />
@@ -106,7 +109,7 @@ function App() {
           {/* <Route path="systemDetails/:urlName" element={<ShowSystem/>}/> */}
           <Route path=":urlName" element={<ShowSystem />} />
           <Route path="update" element={<Update />} />
-          <Route path="delete" element={<Delete />} />
+          <Route path="delete" element={<DeleteSystem />} />
           {/* <Route path="map" element={<Map/>} /> */}
 
           <Route path="*" element={<h1> A mistake </h1>} />
