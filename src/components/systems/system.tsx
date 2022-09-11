@@ -32,6 +32,11 @@ const Systems = () => {
 
     return (
         <div className="card-systems">
+            <Button variant="outlined" onClick=
+                {
+                    () => navigate('/add')
+                }
+            >add system</Button>
             <div className="card-systems-container">
                 {systemStore.systems?.map((s: System) => (
                     <Card sx={{ maxWidth: 345, backgroundImage: `${s.logoUrl}` }} className="card">
@@ -63,11 +68,7 @@ const Systems = () => {
                     </Card>
                 ))}
             </div>
-            <Button variant="outlined" onClick=
-                {
-                    () => navigate('/add')
-                }
-            >add system</Button>
+            
 
         </div>
     )

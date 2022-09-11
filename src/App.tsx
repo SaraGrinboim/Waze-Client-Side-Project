@@ -18,8 +18,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+<<<<<<< HEAD
 const basic_url=process.env;
 
+=======
+import Update from './components/systems/update';
+import Delete from './components/systems/delete';
+>>>>>>> f60a30e73001e4bed7f57cf53f41357948d6e2e4
 
 function App() {
 
@@ -105,7 +110,8 @@ function App() {
           <Route path="systems/:id" element={<ShowSystem />} />
           {/* <Route path="systemDetails/:urlName" element={<ShowSystem/>}/> */}
           <Route path=":urlName" element={<ShowSystem />} />
-          
+          <Route path="update" element={<Update />} />
+          <Route path="delete" element={<Delete />} />
           {/* <Route path="map" element={<Map/>} /> */}
 
           <Route path="*" element={<h1> A mistake </h1>} />
