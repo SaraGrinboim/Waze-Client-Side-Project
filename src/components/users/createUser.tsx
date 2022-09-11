@@ -16,7 +16,7 @@ function CreateUser() {
 
         <Alert severity="success">This is a success!</Alert>
         const user: User = {
-            // _id:'',
+            uid:'',
             role: eRole.customer,
             firstName,
             lastName,

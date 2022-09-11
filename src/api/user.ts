@@ -13,7 +13,7 @@ export const get = async () => {
 
 }
 
-export const getById = async (id: string) => {
+export const getById = async (id: string | undefined) => {
     try {
         const user = await axios.get(`http://localhost:3333/user/${id}`);
         return user.data;
@@ -66,7 +66,7 @@ class Store {
         return this.users;
     }
 
-    async getById(id: string): Promise<User>{
+    async getById(id: string | undefined): Promise<User>{
         this.user = await getById(id);
         return this.user;
     }

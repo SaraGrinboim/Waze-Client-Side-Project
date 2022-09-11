@@ -18,6 +18,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import Update from './components/systems/update';
+import Delete from './components/systems/delete';
 
 function App() {
 
@@ -103,7 +105,8 @@ function App() {
           <Route path="systems/:id" element={<ShowSystem />} />
           {/* <Route path="systemDetails/:urlName" element={<ShowSystem/>}/> */}
           <Route path=":urlName" element={<ShowSystem />} />
-          
+          <Route path="update" element={<Update />} />
+          <Route path="delete" element={<Delete />} />
           {/* <Route path="map" element={<Map/>} /> */}
 
           <Route path="*" element={<h1> A mistake </h1>} />
