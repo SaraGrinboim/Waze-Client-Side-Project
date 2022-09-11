@@ -6,6 +6,7 @@ import { Button, Card, CardContent, Typography, CardActionArea } from '@mui/mate
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import CardMedia from '@mui/material/CardMedia';
+import userStore from '../../api/user';
 
 const ShowSystem = () => {
 
@@ -65,13 +66,18 @@ const ShowSystem = () => {
                                 phone number:   {systemStore.system.phone}
                             </Typography>
                             <br />
-                            <Button onClick={() => navigate("/delete")} startIcon={<DeleteIcon />}>delete</Button>
-                            <br />
-                            <Button onClick={() => navigate("/update")} startIcon={<ModeEditOutlineIcon />}>update</Button>
                         </CardContent>
                     </CardActionArea>
                 </Card>
             }
+            {userStore.user?.role === 'admin' &&
+                <CardContent>
+                    <Button onClick={() => navigate("/delete")} startIcon={<DeleteIcon />}>delete</Button>
+                    <br />
+                    <Button onClick={() => navigate("/update")} startIcon={<ModeEditOutlineIcon />}>update</Button>
+                </CardContent>
+            }
+
         </>
     );
 }
