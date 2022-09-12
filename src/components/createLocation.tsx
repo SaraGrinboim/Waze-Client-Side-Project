@@ -28,16 +28,12 @@ const CreateLocation = () => {
         //         }
         //     )
     }
-<<<<<<< HEAD
+
     useEffect(()=>{
         console.log(userStore.user);
     },[])
     const handleSubmit = async () => {
-=======
 
-    const handleSubmit = async () => {
-
->>>>>>> f60a30e73001e4bed7f57cf53f41357948d6e2e4
         console.log(userStore.user)
         const newLocation: Location = {
             manager_id: userStore.user._id,
