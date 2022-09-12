@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import systemStore from '../../api/system';
 import { Button, Card, CardContent, Typography, CardActionArea } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import swal from 'sweetalert';
+import { System } from '../../models/system.model';
+import '../../styles/system.css';
 import CardMedia from '@mui/material/CardMedia';
+import userStore from '../../api/user';
 
 const ShowSystem = () => {
 
@@ -65,13 +69,18 @@ const ShowSystem = () => {
                                 phone number:   {systemStore.system.phone}
                             </Typography>
                             <br />
-                            <Button onClick={() => navigate("/delete")} startIcon={<DeleteIcon />}>delete</Button>
-                            <br />
-                            <Button onClick={() => navigate("/update")} startIcon={<ModeEditOutlineIcon />}>update</Button>
                         </CardContent>
                     </CardActionArea>
                 </Card>
             }
+            {userStore.user?.role === '0' &&
+                <CardContent>
+                    <Button onClick={() => navigate("/delete")} startIcon={<DeleteIcon />}>delete</Button>
+                    <br />
+                    <Button onClick={() => navigate("/update")} startIcon={<ModeEditOutlineIcon />}>update</Button>
+                </CardContent>
+            }
+
         </>
     );
 }

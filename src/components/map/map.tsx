@@ -155,5 +155,6 @@ const generateHouses = (position: LatLngLiteral) => {
     });
   }
   houses.push({lat: 31.9023394, lng: 35.027524});
+  houses.push({lat: 31.849598, lng: 35.034977});
   return houses;
 };
