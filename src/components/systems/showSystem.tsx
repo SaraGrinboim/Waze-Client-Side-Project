@@ -31,6 +31,7 @@ const ShowSystem = () => {
             }
         }
         getSystem();
+        console.log(userStore.user);
     }, []);
 
     return (
@@ -74,14 +75,15 @@ const ShowSystem = () => {
                 </Card>
             }
             {userStore.user?.role === '0' &&
-                <CardContent>
-                    <Button onClick={() => navigate("/delete")} startIcon={<DeleteIcon />}>delete</Button>
-                    <br />
-                    <Button onClick={() => navigate("/update")} startIcon={<ModeEditOutlineIcon />}>update</Button>
-                </CardContent>
+            <CardContent>
+                <Button onClick={() => navigate("/delete")} startIcon={<DeleteIcon />}>delete</Button>
+                <br />
+                <Button onClick={() => navigate("/update")} startIcon={<ModeEditOutlineIcon />}>update</Button>
+            </CardContent>
             }
 
         </>
     );
 }
+
 export default observer(ShowSystem);

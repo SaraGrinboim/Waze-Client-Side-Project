@@ -21,18 +21,17 @@ const CreateLocation = () => {
     const [notes, setNotes] = useState<string>();
     const [communication, setCommunication] = useState<string>();
     const addLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
-        //     setnewLocation(
-        //         {
-        //             ...newLocation,
-        //             [e.target.name]:e.target.value
-        //         }
-        //     )
+            // setnewLocation(
+            //     {
+            //         ...newLocation,
+            //         [e.target.name]:e.target.value
+            //     }
+            // )
     }
     useEffect(()=>{
         console.log(userStore.user);
     },[])
     const handleSubmit = async () => {
-        console.log(userStore.user)
         const newLocation: Location = {
             manager_id: userStore.user._id,
             system_id: systemStore.system._id,

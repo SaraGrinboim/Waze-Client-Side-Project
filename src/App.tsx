@@ -21,6 +21,7 @@ import Menu from '@mui/material/Menu';
 
 import Update from './components/systems/update';
 import DeleteSystem from './components/systems/delete';
+import CreateUser from './components/users/createUser';
 
 function App() {
   const basic_url = process.env;
@@ -100,6 +101,7 @@ function App() {
           <Route path="add" element={<CreateSystem />} />
 
           <Route path="searchPage" element={<SearchPage />} />
+          <Route path="addUser" element={<CreateUser />} />
           <Route path="user" element={<Users />} />
           {/* <Route  path="systems" element={<Systems />} >
             <Route  path=":id" element={<ShowSystem />} />
