@@ -82,6 +82,12 @@ class Store {
         return this.location;
     }
 
+    async createLocation(location: Location): Promise<Location> {
+        this.location = await createLocationsBySystemId(location);
+        this.locations.push(location);
+        return this.location;
+    }
+
 }
 const locationStore = new Store();
 export default locationStore;
