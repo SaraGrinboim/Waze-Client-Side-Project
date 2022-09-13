@@ -194,14 +194,14 @@ const CreateLocation = () => {
                     onChange={(e) => setCommunication(e.target.value)}
                 />
             </div>
-            <div className="mb-3">
-                <label>location</label>
-                {/* <Auto
+            {/* <div className="mb-3">
+                <label>location</label> 
+                <Auto
                     setOffice={(position: any) => {
                         setOffice(position);
                         mapRef.current?.panTo(position);
-                    }} />    */}
-            </div>
+                    }} />   
+            </div> */}
             <div className="d-grid">
                 <button type="submit" className="btn btn-primary">
                     Submit
