@@ -28,6 +28,7 @@ const CreateLocation = () => {
             //     }
             // )
     }
+
     useEffect(()=>{
         console.log(userStore.user);
     },[])
