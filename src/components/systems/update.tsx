@@ -84,6 +84,5 @@ const Update = () => {
             </div>
         </form>
     );
-
 }
 export default observer(Update);

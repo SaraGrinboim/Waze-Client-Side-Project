@@ -74,13 +74,23 @@ class Store {
     }
 
     async add(user: User): Promise<User>{
-        await add(user);
-        this.user = await this.get();
-        return this.user;
+        // await add(user);
+        // this.user = await this.get();
+        // return this.user;
+        this.users.push(user);
+        return await add(user);
     }
 
-    async deleteById(id: string):Promise<void> {
+    async deleteById(id: string):Promise<User[]> {
         await deleteById(id);
+        this.users = await get();
+        return this.users;
+    }
+
+    async update(id: string, u: User): Promise<User[]> {
+        await update(id, u);
+        this.users = await get();
+        return this.users.filter((user) => user._id === id);
     }
 }
 const userStore = new Store();

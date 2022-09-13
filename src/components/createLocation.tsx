@@ -21,17 +21,23 @@ const CreateLocation = () => {
     const [notes, setNotes] = useState<string>();
     const [communication, setCommunication] = useState<string>();
     const addLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
-            // setnewLocation(
-            //     {
-            //         ...newLocation,
-            //         [e.target.name]:e.target.value
-            //     }
-            // )
+        // setnewLocation(
+        //     {
+        //         ...newLocation,
+        //         [e.target.name]:e.target.value
+        //     }
+        // )
     }
 
-    useEffect(()=>{
+    useEffect(() => {
+        //כל הסטורים שלנו ריקים
+        //מחזיר NULL
         console.log(userStore.user);
-    },[])
+        //מחזיר NULL
+        console.log(systemStore.system);
+        //מחזיר UNDEFINED
+        console.log(locationStore.location);
+    }, [])
     const handleSubmit = async () => {
         const newLocation: Location = {
             manager_id: userStore.user._id,
@@ -40,7 +46,7 @@ const CreateLocation = () => {
             description: description,
             name: name,
             notes: notes,
-            communication: communication
+            communication: communication,
         }
         // locationStore.
 
